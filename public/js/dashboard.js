@@ -3,6 +3,16 @@
 (function () {
   'use strict'
 
+  //ejemplo
+  var  arrayToPass = [1, "Two", 3];
+  var resultados = appSettings;
+  
+  document.getElementById("demo").innerHTML = "Hello JavaScript!" + resultados;
+
+  console.log(resultados.substring(0,5));
+  
+  arrayToPass.forEach(element => console.log(element));
+
   feather.replace()
 
   // Graphs
