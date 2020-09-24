@@ -24,7 +24,7 @@
 
     <h2>Resultados</h2>
     <div class="table-responsive">
-      <table class="table table-striped table-sm">
+      <table class="table table-striped table-sm" id="id_table">
         <thead>
           <tr>
             <th>Fecha</th>

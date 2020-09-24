@@ -11,8 +11,11 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
 
     <!-- Bootstrap core CSS -->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel = "stylesheet">
-    
+    <link href="{{asset('css/bootstrap.min.css')}}" rel = "stylesheet" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+    <script src = "https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" defer ></script>
+    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel = "stylesheet" > 
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -67,3 +70,40 @@
 
 </script>
 
+<script>
+    
+  $(document).ready(function () {
+    $('#id_table').DataTable({
+      "language": {
+        "sProcessing":     "Procesando...",
+        "sLengthMenu":     "Mostrar _MENU_ registros",
+        "sZeroRecords":    "No se encontraron resultados",
+        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":    "",
+        "sSearch":         "Buscar:",
+        "sUrl":            "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst":    "Primero",
+            "sLast":     "Último",
+            "sNext":     "Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        },
+        "buttons": {
+            "copy": "Copiar",
+            "colvis": "Visibilidad"
+        }
+      }
+    });
+    $('.dataTables_length').addClass('bs-select');
+  });
+  
+</script>

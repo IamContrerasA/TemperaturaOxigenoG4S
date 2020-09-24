@@ -19,8 +19,8 @@
     </div>
 
     @if(count($pacientes))
-
-    <table class="table">
+   
+    <table class="table " id="id_table">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Nombre</th>
@@ -47,18 +47,10 @@
       
     @else
       {{"No existen pacientes registrados"}}
-    @endif   
-   
-
-    <p>This example writes "Hello JavaScript!" into an HTML element with id="demo":</p>
-
-    <p id="demo">a</p>
-
+    @endif    
+    
   </main>
-
-  <script>
-    document.getElementById("demo").innerHTML = "Hello JavaScript!";
-  </script>
+  
   
 @endsection
 
