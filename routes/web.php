@@ -75,3 +75,25 @@ Route::get('/subir', 'App\Http\Controllers\ResultsController@subir');
 Route::get('export', 'App\Http\Controllers\RegistersController@export')->name('export');
 Route::get('importExportView', 'App\Http\Controllers\RegistersController@importExportView');
 Route::post('import', 'App\Http\Controllers\RegistersController@import')->name('import');
+
+Route::get('/subir_archivo', function(){
+    
+    $filename = "/info.txt";
+    $location = asset('uploads'). $filename;
+    
+    //echo $location;
+
+    $fp = fopen($location, "r");
+    while(!feof($fp)) {
+        $linea = fgets($fp);
+        echo $linea . "<br />";
+    }
+    fclose($fp);
+    
+
+});
+
+
+
+Route::get('/uploadfile','App\Http\Controllers\UploadFileController@index');
+Route::post('/uploadfile','App\Http\Controllers\UploadFileController@showUploadFile');
