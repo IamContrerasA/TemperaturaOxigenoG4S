@@ -70,3 +70,8 @@ Route::get('/paciente/{id}/resultados', function($id){
 */
 
 Route::get('/paciente/{id}/resultados', 'App\Http\Controllers\ResultsController@resultados');
+Route::get('/subir', 'App\Http\Controllers\ResultsController@subir');
+
+Route::get('export', 'App\Http\Controllers\RegistersController@export')->name('export');
+Route::get('importExportView', 'App\Http\Controllers\RegistersController@importExportView');
+Route::post('import', 'App\Http\Controllers\RegistersController@import')->name('import');

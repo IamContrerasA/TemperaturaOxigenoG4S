@@ -39,6 +39,14 @@ class ResultsController extends Controller
         */
     }
 
+    public function subir()
+    {
+          
+        return view("file");
+    }
+
+    
+
     /**
      * Show the form for creating a new resource.
      *
