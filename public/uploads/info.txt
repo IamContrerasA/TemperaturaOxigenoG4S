@@ -1,0 +1,2 @@
+nombre,39,hombre,478962903
+nombre2,40,mujer,351584124
