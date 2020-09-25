@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();  
         $num_patients = 6;
         $mul_results = 6;
-        /*
+        
         for ($i=0; $i < $num_patients; $i++) {
             Patient::create([
                     'name' => "Persona" . $i,
@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
                     'DNI' => 54872170 + $i
                 ]);
         }
-        */
+        
         
         for ($i=0; $i < $num_patients * $mul_results; $i++) {
             Result::create([
