@@ -16,11 +16,12 @@ window.onload = (function () {
   console.log(typeof resultados);
     
   resultados.forEach(element => {
-    console.log(element.created_at);
-    array_dias.push(days);
+    var aux_dias = element.created_at;
+    console.log(aux_dias);
+    array_dias.push(aux_dias.substring(0,element.created_at.indexOf("T")));
     array_temperatura.push(element.temperature);
     array_sat_oxigeno.push(element.oxygen_saturation);
-    days++;
+    
   }); 
 
 
@@ -39,6 +40,7 @@ window.onload = (function () {
       labels: array_dias,
       datasets: [{
         //Eje Y
+        label: 'Saturacion de Oxígeno',
         data: array_sat_oxigeno,
         lineTension: 0,
         backgroundColor: 'transparent',
@@ -47,6 +49,7 @@ window.onload = (function () {
         pointBackgroundColor: '#007bff'
       },{
         //Eje Y
+        label: 'Temperatura',
         data: array_temperatura,
         lineTension: 0,
         backgroundColor: 'transparent',
@@ -64,7 +67,7 @@ window.onload = (function () {
         }]
       },
       legend: {
-        display: false
+        display: true
       }
     }
   })
