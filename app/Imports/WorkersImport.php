@@ -2,10 +2,12 @@
 
 namespace App\Imports;
 
-use App\Models\Patient;
+use App\Models\Worker;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class PatientsImport implements ToModel
+// Importa un archivo excel segun sus filas
+
+class WorkersImport implements ToModel
 {
     /**
     * @param array $row
@@ -14,7 +16,7 @@ class PatientsImport implements ToModel
     */
     public function model(array $row)
     {
-        return new Patient([
+        return new Worker([
             'name'     => $row[1],
             'age'    => $row[2], 
             'sex'    => $row[3], 

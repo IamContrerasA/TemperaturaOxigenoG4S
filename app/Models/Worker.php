@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Patient extends Model
+//El modelo Workers es de trabajador
+
+class Worker extends Model
 {
     use HasFactory;
     protected $guarded = [];
