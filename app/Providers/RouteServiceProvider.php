@@ -18,6 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/home';
+    public const INDEX_RESULTADOS = '/index_resultados';
 
     /**
      * If specified, this namespace is automatically applied to your controller routes.
