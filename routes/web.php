@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Models\Patient;
+use \App\Models\Worker;
 use \App\Models\Result;
 
 /*
@@ -15,9 +15,9 @@ use \App\Models\Result;
 |
 */
 
-Route::get('/', "App\Http\Controllers\ResultsController@index");
+Route::get('/index_resultados', "App\Http\Controllers\ResultsController@index");
 Route::get('/dashboard', "App\Http\Controllers\ResultsController@dashboard");
-Route::get('/patients', "App\Http\Controllers\ResultsController@index");
+Route::get('/workers', "App\Http\Controllers\ResultsController@index");
 
 Route::get('/resultados', function () {
     return view('index');
@@ -25,14 +25,14 @@ Route::get('/resultados', function () {
 
 Route::get('/insertar', function(){
     
-    $paciente = new Patient;
+    $trabajador = new Worker;
 
-    $paciente->name = "Pepe";
-    $paciente->age = 58;
-    $paciente->sex = "hombre";
-    $paciente->DNI = 88446699;    
+    $trabajador->name = "Pepe";
+    $trabajador->age = 58;
+    $trabajador->sex = "hombre";
+    $trabajador->DNI = 88446699;    
 
-    $paciente->save();
+    $trabajador->save();
 
 });
 
@@ -40,7 +40,7 @@ Route::get('/insertar_resultado', function(){
     
     $resultado = new Result;
 
-    $resultado->patient_id = 2;
+    $resultado->worker_id = 2;
     $resultado->oxygen_saturation = 91.5;
     $resultado->temperature = 36.1;     
 
@@ -52,15 +52,15 @@ Route::get('/leer_resultado', function(){
     
     $resultados = Result::all();
     foreach($resultados as $resultado){        
-        echo "Paciente: " . $resultado->patient_id  . "<br>";
+        echo "Trabajador: " . $resultado->worker_id  . "<br>";
     }
 
 });
 
 /*
-Route::get('/paciente/{id}/resultados', function($id){
+Route::get('/trabajador/{id}/resultados', function($id){
     
-    $results = Patient::find($id)->results;
+    $results = Worker::find($id)->results;
  
     foreach($results as $result){       
         echo $result->oxygen_saturation . "<br/>";
@@ -69,7 +69,7 @@ Route::get('/paciente/{id}/resultados', function($id){
 });
 */
 
-Route::get('/paciente/{id}/resultados', 'App\Http\Controllers\ResultsController@resultados');
+Route::get('/trabajador/{id}/resultados', 'App\Http\Controllers\ResultsController@resultados');
 Route::get('/subir', 'App\Http\Controllers\ResultsController@subir');
 
 Route::get('export', 'App\Http\Controllers\RegistersController@export')->name('export');
@@ -113,6 +113,7 @@ Route::get('/subir_archivo/{nombre}', function($nombre){
 
 Route::get('/uploadfile','App\Http\Controllers\UploadFileController@index');
 Route::post('/uploadfile','App\Http\Controllers\UploadFileController@showUploadFile');
-Auth::routes();
 
+Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
