@@ -1,3 +1,4 @@
+<!-- Plantilla general -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -49,7 +50,9 @@
         @yield("columna") 
 
         @include("layouts.content")
-        @yield("contenido") 
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+          @yield("contenido") 
+        </main>
         
       </div>
     </div>
