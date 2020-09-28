@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+//El modelo User es para autenticacion y permisos
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role_id'
     ];
 
     /**
@@ -37,4 +38,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role(){
+        return $this->belongsTo('App\Models\Role');
+    }
+
+    public function authorizeRoles($roles)
+    {
+        //El error de no estar autorizado es 401, pero mandamos 404 para distraer al atacante
+        abort_unless($this->hasAnyRole($roles), 404);
+        return true;
+    }
+
+    public function hasAnyRole($roles)
+    {
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($this->hasRole($role)) {
+                    return true;
+                }
+            }
+        } else {
+            if ($this->hasRole($roles)) {
+                 return true; 
+            }   
+        }
+        return false;
+    }
+    
+    public function hasRole($role)
+    {
+        if ($this->role()->where('name', $role)->first()) {
+            return true;
+        }
+        return false;
+    }
 }
