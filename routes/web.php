@@ -76,8 +76,8 @@ Route::get('export', 'App\Http\Controllers\RegistersController@export')->name('e
 Route::get('importExportView', 'App\Http\Controllers\RegistersController@importExportView');
 Route::post('import', 'App\Http\Controllers\RegistersController@import')->name('import');
 
-Route::get('/subir_archivo', function(){
-    
+Route::get('/subir_archivo/{nombre}', function($nombre){
+    /*
     $filename = "/info.txt";
     $location = asset('uploads'). $filename;
     
@@ -90,10 +90,29 @@ Route::get('/subir_archivo', function(){
     }
     fclose($fp);
     
+    */
+    
+    // dd(File::allFiles('uploads'));
+    $files = File::allFiles('uploads');
+    foreach($files as $file){
+        echo $file . "</br>";
 
+        /*
+        if($file == "uploads/" . $nombre){
+            echo $file . "</br>";
+        }
+        */
+    } 
+    
+
+   // return (File::allFiles('uploads'));
+    
 });
 
 
 
 Route::get('/uploadfile','App\Http\Controllers\UploadFileController@index');
 Route::post('/uploadfile','App\Http\Controllers\UploadFileController@showUploadFile');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

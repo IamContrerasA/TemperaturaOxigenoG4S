@@ -65,7 +65,7 @@
     $(document).ready(function(){
       $("button").click(function(){
         $.ajax({        
-          url: "/subir_archivo", 
+          url: "/subir_archivo/info.txt", 
           success: function(result){
             $("#div1").html(result);
         }});
