@@ -7,7 +7,15 @@
           <span data-feather="home"></span>
           Home <span class="sr-only">(current)</span>
         </a>
-      </li>      
+      </li>
+      @if(Auth::user()->role_id < 3)
+        <li class="nav-item">
+          <a class="nav-link " href="/admin/users">
+            <span data-feather="users"></span>
+            Usuarios <span class="sr-only"></span>
+          </a>
+        </li>
+      @endif       
       <li class="nav-item">
         <a class="nav-link" href="/workers">
           <span data-feather="users"></span>

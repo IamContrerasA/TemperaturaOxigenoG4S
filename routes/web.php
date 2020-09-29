@@ -15,6 +15,7 @@ use \App\Models\Result;
 |
 */
 
+//rutas varias, faltan corregir
 Route::get('/index_resultados', "App\Http\Controllers\ResultsController@index");
 Route::get('/dashboard', "App\Http\Controllers\ResultsController@dashboard");
 Route::get('/workers', "App\Http\Controllers\ResultsController@index");
@@ -110,10 +111,14 @@ Route::get('/subir_archivo/{nombre}', function($nombre){
 });
 
 
-
+//Rutas para exportar importar archivos
 Route::get('/uploadfile','App\Http\Controllers\UploadFileController@index');
 Route::post('/uploadfile','App\Http\Controllers\UploadFileController@showUploadFile');
 
+//Rutas autenticacion
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
+
+//Rutas crud usuarios
+Route::resource('admin/users', 'App\Http\Controllers\AdminUserController');
