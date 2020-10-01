@@ -10,18 +10,18 @@
         <table>
             <tr>
                 <td>{!! Form::label('name', 'Nombre') !!} </td>
-                <td>{!! Form::text('name', null, ['required']) !!} </td>
+                <td>{!! Form::text('name', null, ['class' => 'form-control', 'required']) !!} </td>
             </tr>
-          
+           
             <tr>
                 <td>{!! Form::label('email', 'Email') !!} </td>
-                <td>{!! Form::email('email', null, ['required']) !!} </td>
+                <td>{!! Form::email('email', null, ['class' => 'form-control','required']) !!} </td>
             </tr>
 
             <!-- Por si se desea cambiar el password directamente (no recomendado)
             <tr>
                 <td>{//!! //Form::label('password', 'Contraseña') !!} </td>
-                <td>{//!! Form::password('password', ['required']) !!} </td>
+                <td>{//!! Form::password('password', ['class' => 'form-control','required']) !!} </td>
 
                 Para recoger el password
                 Form::input('password', 'name', 'value')
