@@ -15,4 +15,12 @@ class Worker extends Model
     public function results(){
         return $this->hasMany('App\Models\Result');
     }
+
+    public function area(){
+        return $this->belongsTo('App\Models\Area');
+    }
+
+    public function roster(){
+        return $this->belongsTo('App\Models\Roster');
+    }
 }

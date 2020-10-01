@@ -19,6 +19,10 @@ class CreateWorkersTable extends Migration
             $table->integer("age");
             $table->string("sex");
             $table->integer("DNI");
+            $table->integer('area_id')->index();
+            $table->integer('roster_id')->index();
+            $table->date("fecha_subida");
+            $table->date("fecha_bajada");
             $table->timestamps();
         });
     }

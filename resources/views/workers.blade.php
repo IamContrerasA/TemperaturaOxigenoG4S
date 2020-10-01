@@ -28,6 +28,10 @@
         <th scope="col">Edad</th>
         <th scope="col">Sexo</th>
         <th scope="col">DNI</th>
+        <th scope="col">Area</th>
+        <th scope="col">Roster</th>
+        <th scope="col">Fecha de Subida</th>
+        <th scope="col">Fecha de Bajada</th>
         <th scope="col">Resultados</th>          
       </tr>
     </thead>
@@ -39,6 +43,10 @@
         <td>{{$trabajador->age}}</td>
         <td>{{$trabajador->sex}}</td>
         <td>{{$trabajador->DNI}}</td>
+        <td>{{$trabajador->area->name}}</td>
+        <td>{{$trabajador->roster->name}}</td>
+        <td>{{$trabajador->fecha_subida}}</td>
+        <td>{{$trabajador->fecha_bajada}}</td>
         <td><a href= "/trabajador/{{ $trabajador -> id }}/resultados"> resultado </a></td>
       </tr>
     @endforeach 
@@ -49,10 +57,7 @@
   @else
     {{"No existen trabajadores registrados"}}
   @endif    
-  
-
-  
-  
+ 
 @endsection
 
 

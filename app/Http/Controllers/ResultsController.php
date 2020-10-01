@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use \App\Models\Worker;
@@ -15,8 +17,17 @@ class ResultsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $trabajadores=Worker::all();       
+    {        
+        /* Consulta antigua
+        $trabajadores=Worker::with('roster', 'area')
+        ->select('workers.*')
+        ->join('rosters', 'rosters.id', '=', 'workers.roster_id')
+        ->join('areas', 'areas.id', '=', 'workers.area_id')
+        ->get();   
+        return $trabajadores;     
+        */
+
+        $trabajadores=Worker::all();        
         return view("workers", compact("trabajadores"));  
         
     }
