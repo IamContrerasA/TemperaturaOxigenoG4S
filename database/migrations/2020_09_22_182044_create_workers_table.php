@@ -19,8 +19,8 @@ class CreateWorkersTable extends Migration
             $table->integer("age");
             $table->string("sex");
             $table->integer("DNI");
-            $table->integer('area_id')->index();
-            $table->integer('roster_id')->index();
+            $table->foreignId('area_id')->references('id')->on('areas');
+            $table->integer('roster_id')->references('id')->on('rosters');
             $table->date("fecha_subida");
             $table->date("fecha_bajada");
             $table->timestamps();
