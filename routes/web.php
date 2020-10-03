@@ -20,63 +20,16 @@ Route::get('/index_resultados', "App\Http\Controllers\ResultsController@index");
 Route::get('/dashboard', "App\Http\Controllers\ResultsController@dashboard");
 Route::get('/workers', "App\Http\Controllers\ResultsController@index");
 
-Route::get('/resultados', function () {
-    return view('index');
-});
-
-Route::get('/insertar', function(){
-    
-    $trabajador = new Worker;
-
-    $trabajador->name = "Pepe";
-    $trabajador->age = 58;
-    $trabajador->sex = "hombre";
-    $trabajador->DNI = 88446699;    
-
-    $trabajador->save();
-
-});
-
-Route::get('/insertar_resultado', function(){
-    
-    $resultado = new Result;
-
-    $resultado->worker_id = 2;
-    $resultado->oxygen_saturation = 91.5;
-    $resultado->temperature = 36.1;     
-
-    $resultado->save();
-
-});
-
-Route::get('/leer_resultado', function(){
-    
-    $resultados = Result::all();
-    foreach($resultados as $resultado){        
-        echo "Trabajador: " . $resultado->worker_id  . "<br>";
-    }
-
-});
-
-/*
-Route::get('/trabajador/{id}/resultados', function($id){
-    
-    $results = Worker::find($id)->results;
- 
-    foreach($results as $result){       
-        echo $result->oxygen_saturation . "<br/>";
-    }
-
-});
-*/
 
 Route::get('/trabajador/{id}/resultados', 'App\Http\Controllers\ResultsController@resultados');
 Route::get('/subir', 'App\Http\Controllers\ResultsController@subir');
 
+//Libreria Excel
 Route::get('export', 'App\Http\Controllers\RegistersController@export')->name('export');
 Route::get('importExportView', 'App\Http\Controllers\RegistersController@importExportView');
 Route::post('import', 'App\Http\Controllers\RegistersController@import')->name('import');
 
+//otra forma de subir y manejar archivos
 Route::get('/subir_archivo/{nombre}', function($nombre){
     /*
     $filename = "/info.txt";
@@ -122,3 +75,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/'
 
 //Rutas crud usuarios
 Route::resource('admin/users', 'App\Http\Controllers\AdminUserController');
+
+//Rutas crud areas
+Route::resource('admin/areas', 'App\Http\Controllers\AdminAreaController');
+
+//Rutas crud rosters
+Route::resource('admin/rosters', 'App\Http\Controllers\AdminRosterController');

@@ -15,7 +15,22 @@
             Usuarios <span class="sr-only"></span>
           </a>
         </li>
-      @endif       
+     
+        <li class="nav-item">
+          <a class="nav-link " href="/admin/areas">
+            <span data-feather="users"></span>
+            Areas <span class="sr-only"></span>
+          </a>
+        </li>
+     
+      <li class="nav-item">
+        <a class="nav-link " href="/admin/rosters">
+          <span data-feather="users"></span>
+          Rosters <span class="sr-only"></span>
+        </a>
+      </li>
+      @endif 
+
       <li class="nav-item">
         <a class="nav-link" href="/workers">
           <span data-feather="users"></span>
