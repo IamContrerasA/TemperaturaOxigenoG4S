@@ -17,7 +17,7 @@ use \App\Models\Result;
 
 //rutas de archivos faltan corregir segun requerimientos---------------------------------------->
 
-Route::get('/subir', 'App\Http\Controllers\FilesController@subir');
+Route::get('/subir', 'App\Http\Controllers\ReportController@subir');
 
 //Libreria Excel
 Route::get('export', 'App\Http\Controllers\RegistersController@export')->name('export');

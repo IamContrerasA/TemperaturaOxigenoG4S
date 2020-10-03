@@ -1,5 +1,4 @@
 <!-- Vista para importar o exportar archivos -->
-<!-- PRUEBA de manejos de archivos luego borrar sino se usa-->
 @extends("layouts.template")
 
 @section("contenido") 
