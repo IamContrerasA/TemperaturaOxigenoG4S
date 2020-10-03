@@ -15,14 +15,9 @@ use \App\Models\Result;
 |
 */
 
-//rutas varias, faltan corregir
-Route::get('/index_resultados', "App\Http\Controllers\ResultsController@index");
-Route::get('/dashboard', "App\Http\Controllers\ResultsController@dashboard");
-Route::get('/workers', "App\Http\Controllers\ResultsController@index");
+//rutas de archivos faltan corregir segun requerimientos---------------------------------------->
 
-
-Route::get('/trabajador/{id}/resultados', 'App\Http\Controllers\ResultsController@resultados');
-Route::get('/subir', 'App\Http\Controllers\ResultsController@subir');
+Route::get('/subir', 'App\Http\Controllers\FilesController@subir');
 
 //Libreria Excel
 Route::get('export', 'App\Http\Controllers\RegistersController@export')->name('export');
@@ -63,10 +58,11 @@ Route::get('/subir_archivo/{nombre}', function($nombre){
     
 });
 
-
 //Rutas para exportar importar archivos
 Route::get('/uploadfile','App\Http\Controllers\UploadFileController@index');
 Route::post('/uploadfile','App\Http\Controllers\UploadFileController@showUploadFile');
+//-------------------------------------------------------------------------------------------->
+
 
 //Rutas autenticacion
 Auth::routes();
@@ -81,3 +77,9 @@ Route::resource('admin/areas', 'App\Http\Controllers\AdminAreaController');
 
 //Rutas crud rosters
 Route::resource('admin/rosters', 'App\Http\Controllers\AdminRosterController');
+
+//Rutas crud workers
+Route::resource('workers', 'App\Http\Controllers\WorkersController');
+
+//Rutas crud results
+Route::resource('workers/{id}/results', 'App\Http\Controllers\ResultsController');
