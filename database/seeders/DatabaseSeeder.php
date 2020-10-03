@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
                     'name' => "Persona" . $i,
                     'age' => $i + 31,
                     'sex' => "hombre/mujer",
-                    'DNI' => 54872170 + $i,
+                    'DNI' => 34872170 + (10000000 * $i),
                     'area_id' => mt_rand(1, 6),
                     'roster_id' => mt_rand(1, 4),
                     'fecha_subida' =>  now(),
