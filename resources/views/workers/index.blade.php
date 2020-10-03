@@ -72,7 +72,7 @@
       var $this = $(this);
       var indice = $this[0].toString();
 
-      var result = confirm("Estas seguro que deseas eliminar al usuario: " +  indice.substring(indice.lastIndexOf('/') + 1,indice.size) + "???");
+      var result = confirm("Estas seguro que deseas eliminar al trabajador: " +  indice.substring(indice.lastIndexOf('/') + 1,indice.size) + "???");
             
       if(result){        
     

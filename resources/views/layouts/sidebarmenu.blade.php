@@ -18,14 +18,14 @@
      
         <li class="nav-item">
           <a class="nav-link " href="/admin/areas">
-            <span data-feather="users"></span>
+            <span data-feather="briefcase"></span>
             Areas <span class="sr-only"></span>
           </a>
         </li>
      
       <li class="nav-item">
         <a class="nav-link " href="/admin/rosters">
-          <span data-feather="users"></span>
+          <span data-feather="clock"></span>
           Rosters <span class="sr-only"></span>
         </a>
       </li>
@@ -33,7 +33,7 @@
 
       <li class="nav-item">
         <a class="nav-link" href="/workers">
-          <span data-feather="users"></span>
+          <span data-feather="activity"></span>
           Trabajadores
         </a>
       </li>
@@ -41,7 +41,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/subir">
             <span data-feather="bar-chart-2"></span>
-            Subir archivo
+            Reportes
           </a>
         </li>
       @endif      

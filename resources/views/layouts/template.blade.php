@@ -17,6 +17,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
     <script src = "https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" defer ></script>
     <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel = "stylesheet" > 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>        
 
     <style>
       .bd-placeholder-img {
@@ -59,9 +61,7 @@
     
     <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>        
-    <script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/icons.js') }}"></script>
     
   </body>
 </html>
