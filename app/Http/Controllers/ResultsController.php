@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use \App\Models\Worker;
+use \App\Models\Result;
     
 // controlador principal de resultados
 
@@ -17,9 +18,10 @@ class ResultsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($id)
-    {            
-        $results = Worker::find($id)->results;
-        $trabajador = Worker::find($id)->name;
+    {           
+        
+        $results = Result::where('worker_id', '=', $id)->orderBy('date', 'asc')->get();
+        $trabajador = Worker::find($id);
         return view("workers.results.index", compact("results", "trabajador"));  
     }
 
@@ -28,9 +30,11 @@ class ResultsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        $trabajador = Worker::find($id);
+        return view('workers.results.create', compact("trabajador")); 
     }
 
     /**
@@ -41,6 +45,16 @@ class ResultsController extends Controller
      */
     public function store(Request $request)
     {
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        $resultado = new Result;
+        $resultado ->worker_id = $request->worker_id;
+        $resultado ->oxygen_saturation = $request->oxygen_saturation;
+        $resultado ->temperature = $request->temperature;
+        $resultado ->date = $request->date;        
+        
+        $resultado->save();
+
+        return redirect('/workers/'.$request->worker_id.'/results'); 
         
     }
 
@@ -50,9 +64,10 @@ class ResultsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-               
+    public function show($id_worker, $id_result)
+    {        
+        $resultado = Result::findOrFail($id_result);        
+        return view("workers.results.view", compact("resultado"));  
     }
 
     /**
@@ -61,9 +76,14 @@ class ResultsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_worker, $id_result)
     {
-       
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        $resultado = Result::find($id_result);
+        $resultado->date = str_replace(' ', 'T', $resultado->date);
+        $resultado->date = substr($resultado->date, 0, strrpos($resultado->date, ':'));
+               
+        return view("workers.results.edit", compact("resultado"));
     }
 
     /**
@@ -73,9 +93,18 @@ class ResultsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_worker, $id_result)
     {
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        $resultado = Result::findOrFail($id_result);
+
+        $resultado ->oxygen_saturation = $request->oxygen_saturation;
+        $resultado ->temperature = $request->temperature;
+        $resultado ->date = $request->date;        
         
+        $resultado->update();        
+        return redirect('/workers/'.$id_worker.'/results'); 
+   
     }
 
     /**
@@ -84,9 +113,11 @@ class ResultsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_worker, $id_result)
     {        
-             
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        $resultado = Result::findOrFail($id_result);
+        $resultado ->delete();       
     }
     
 }

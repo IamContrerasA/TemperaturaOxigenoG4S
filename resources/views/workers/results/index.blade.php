@@ -4,17 +4,11 @@
 @section("contenido")    
       
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">{{$trabajador}}</h1>
-    <!--<p id="demo">a</p>-->
+    <h1 class="h2">{{$trabajador->name}}</h1>    
     <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">
-        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-      </div>
-      <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-        <span data-feather="calendar"></span>
-        This week
-      </button>
+      <div class="btn-group mr-2">        
+        <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
+      </div>     
     </div>
   </div>
 
@@ -30,14 +24,21 @@
           <th>Fecha</th>
           <th>Temperatura</th>
           <th>Saturación de Oxigeno</th>
+          <th>Opciones</th>
         </tr>
       </thead>
       <tbody>
       @foreach($results as $result)
         <tr>
-          <td>{{$result->created_at}}</td>
+          <td>{{$result->date}}</td>
           <td>{{$result->temperature}}</td>
-          <td>{{$result->oxygen_saturation}}</td>            
+          <td>{{$result->oxygen_saturation}}</td> 
+          <td>
+            <a href= "results/{{$result->id}}"> Ver </a> &nbsp;            
+            <a href= "results/{{$result->id}}/edit"> Editar </a> &nbsp;
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+            <a href="results/{{$result->id}}" data-method="delete" class="jquery-postback">Delete</a>
+          </td>            
         </tr>
       @endforeach 
       </tbody>
@@ -47,6 +48,37 @@
 
   <script>    
     var appSettings = {!! json_encode($results->toArray(), JSON_HEX_TAG) !!};
+  </script>
+
+  <script>
+    //funcion para borrar un resultado
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    });
+    
+    $(document).on('click', 'a.jquery-postback', function(e) {   
+      
+      e.preventDefault();   
+      var $this = $(this);
+      var indice = $this[0].toString();
+
+      var result = confirm("Estas seguro que deseas eliminar al resultado: " +  indice.substring(indice.lastIndexOf('/') + 1,indice.size) + "???");
+            
+      if(result){        
+    
+        $.post({
+            type: $this.data('method'),
+            url: $this.attr('href')
+        }).done(function (data) {
+            alert('Usuario borrado exitosamente');
+            console.log(data);
+            window.location.reload();
+        });
+      }      
+    });
+    
   </script>
 
 @endsection

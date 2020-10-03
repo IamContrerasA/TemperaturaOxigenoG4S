@@ -15,9 +15,10 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();            
-            $table->integer("worker_id")->references('id')->on('workers');
+            $table->integer("worker_id");
             $table->decimal("oxygen_saturation", 8, 2);
             $table->decimal("temperature", 8, 2);
+            $table->timestamp("date", 0);
             $table->timestamps();
         });
     }

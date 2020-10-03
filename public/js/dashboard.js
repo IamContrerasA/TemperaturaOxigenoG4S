@@ -3,8 +3,6 @@
 window.onload = (function () {
   'use strict'
 
-  //ejemplo
- 
   var resultados = appSettings;
   var array_dias = [];  
   var array_temperatura = [];
@@ -14,16 +12,17 @@ window.onload = (function () {
   //document.getElementById("demo").innerHTML = "hhhh Hello JavaScript!" + resultados;
 
   console.log(typeof resultados);
-    
+
+  //agregar datos
+
   resultados.forEach(element => {
-    var aux_dias = element.created_at;
+    var aux_dias = element.date;
     console.log(aux_dias);
-    array_dias.push(aux_dias.substring(0,element.created_at.indexOf("T")));
+    array_dias.push(aux_dias.substring(0,element.date.indexOf(" ")));
     array_temperatura.push(element.temperature);
     array_sat_oxigeno.push(element.oxygen_saturation);
     
   }); 
-
 
   feather.replace()
 

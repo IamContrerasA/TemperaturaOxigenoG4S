@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
                     'worker_id' => mt_rand(1,$num_workers),
                     'temperature' => 36.5 + mt_rand(1,$num_workers),
                     'oxygen_saturation' => 89.5 +mt_rand(1,$num_workers),
-                    'created_at' => now()
+                    'date' => now()
                 ]);
         }
 
