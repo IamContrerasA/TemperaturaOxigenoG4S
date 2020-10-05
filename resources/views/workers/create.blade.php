@@ -16,11 +16,11 @@
             <tr>
                 <td>{!! Form::label('age', 'Edad') !!} </td>
                 <td>{!! Form::number('age', null, ['class' => 'form-control', 'required']) !!} </td>
-            </tr>
+            </tr>            
 
             <tr>
                 <td>{!! Form::label('sex', 'Sexo') !!} </td>
-                <td>{!! Form::text('sex', null, ['class' => 'form-control', 'required']) !!} </td>
+                <td>{!! Form::select('sex', $sex, null, ['class' => 'form-control']) !!}</td>
             </tr>
 
             <tr>

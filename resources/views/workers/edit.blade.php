@@ -20,8 +20,8 @@
 
             <tr>
                 <td>{!! Form::label('sex', 'Sexo') !!} </td>
-                <td>{!! Form::text('sex', null, ['class' => 'form-control', 'required']) !!} </td>
-            </tr>
+                <td>{!! Form::select('sex', $sex, null, ['class' => 'form-control']) !!}</td>
+            </tr> 
 
             <tr>
                 <td>{!! Form::label('DNI', 'DNI') !!} </td>

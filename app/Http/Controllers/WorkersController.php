@@ -35,8 +35,9 @@ class WorkersController extends Controller
     {
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);        
         $areas = Area::pluck('name', 'id');
-        $rosters = Roster::pluck('name', 'id');        
-        return view('workers.create', compact("areas", "rosters"));
+        $rosters = Roster::pluck('name', 'id');
+        $sex = array('hombre' => 'hombre', 'mujer' => 'mujer', 'otro' => 'otro');        
+        return view('workers.create', compact("areas", "rosters", "sex"));
 
     }
 
@@ -57,7 +58,7 @@ class WorkersController extends Controller
         $worker ->area_id = $request->area_id;
         $worker ->roster_id = $request->roster_id;
         $worker ->fecha_subida = $request->fecha_subida;
-        $worker ->fecha_bajada = $request->fecha_bajada;
+        $worker ->fecha_bajada = $request->fecha_bajada;        
 
         $worker->save();
 
@@ -88,8 +89,9 @@ class WorkersController extends Controller
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);        
         $trabajador = Worker::findOrFail($id);
         $areas = Area::pluck('name', 'id');
-        $rosters = Roster::pluck('name', 'id');  
-        return view("workers.edit", compact("trabajador", "areas", "rosters")); 
+        $rosters = Roster::pluck('name', 'id'); 
+        $sex = array('hombre' => 'hombre', 'mujer' => 'mujer', 'otro' => 'otro');  
+        return view("workers.edit", compact("trabajador", "areas", "rosters", "sex")); 
     }
 
     /**
