@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Worker;
+use App\Models\Result;
 
 //Controlador para la gestion de los reportes y archivos
 
@@ -22,8 +23,10 @@ class ReportController extends Controller
      */
     public function index()
     {        
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);     
-        return view("reports.index");
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']); 
+        $trabajador = [];
+        $request = (object)['DNI' => 0, 'temperature' => 0, 'oxygen_saturation' => 0];   
+        return view("reports.index", compact("trabajador", "request"));
     }
 
     /**
@@ -44,7 +47,33 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
+        //QUERY PARA conseguir los datos del form del index de results
+                
+        $resultados = [];      
+        $trabajador = Worker::where('DNI', $request->DNI)->get();
+        if(count($trabajador)){ 
+            foreach ($trabajador[0]->results as $result){
+                if($request->tempRadio == "mayor" && $request->satOxiRadio == "mayor"){
+                    if($result->temperature >= $request->temperature && $result->oxygen_saturation >= $request->oxygen_saturation){
+                        array_push($resultados, $result);
+                    }
+                }elseif($request->tempRadio == "menor" && $request->satOxiRadio == "menor"){
+                    if($result->temperature <= $request->temperature && $result->oxygen_saturation <= $request->oxygen_saturation){
+                        array_push($resultados, $result);
+                    }
+                }elseif($request->tempRadio == "menor" && $request->satOxiRadio == "mayor"){
+                    if($result->temperature <= $request->temperature && $result->oxygen_saturation >= $request->oxygen_saturation){
+                        array_push($resultados, $result);
+                    }
+                }elseif($request->tempRadio == "mayor" && $request->satOxiRadio == "menor"){
+                    if($result->temperature >= $request->temperature && $result->oxygen_saturation <= $request->oxygen_saturation){
+                        array_push($resultados, $result);
+                    }
+                } 
+            }
+        }
         
+        return view("reports.index", compact("trabajador", "resultados", "request"));       
     }
 
     /**
