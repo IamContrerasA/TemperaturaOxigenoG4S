@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Exports\WorkersExport;
 use App\Exports\ResultsExport;
+use App\Exports\ResultsExportForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -22,11 +23,11 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {        
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']); 
+    {   
         $trabajador = [];
+        $resultados = [];
         $request = (object)['DNI' => 0, 'temperature' => 0, 'oxygen_saturation' => 0];   
-        return view("reports.index", compact("trabajador", "request"));
+        return view("reports.index", compact("trabajador", "request", "resultados"));
     }
 
     /**
@@ -133,5 +134,14 @@ class ReportController extends Controller
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);      
         return Excel::download((new ResultsExport), 'resultados.xlsx');
     }
+
+    public function exportResultForm($request) 
+    {       
+        $resultados = json_decode($request);       
+        
+        return Excel::download((new ResultsExportForm($resultados)), 'resultados.xlsx');
+       
+    }
+    
     
 }

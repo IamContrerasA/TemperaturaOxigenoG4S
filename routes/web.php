@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/reports', 'App\Http\Controllers\ReportController');
 Route::get('/exportWorker', 'App\Http\Controllers\ReportController@exportWorker')->name('exportWorker');
 Route::get('/exportResult', 'App\Http\Controllers\ReportController@exportResult')->name('exportResult');
+Route::get('exportResultForm/{id}', 'App\Http\Controllers\ReportController@exportResultForm');
 
 //Rutas autenticacion
 Auth::routes();

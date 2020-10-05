@@ -2,7 +2,6 @@
 @extends("layouts.template")
 
 @section("contenido") 
-  
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Reportes</h1>    
   </div>    
@@ -91,9 +90,11 @@
       </div>
     </div>
     
-    {!! Form::submit('Consultar', ['class' => 'btn btn-primary' ]) !!} 
-    {!! Form::reset('Exportar', ['class' => 'btn btn-danger' ]) !!}
+    {!! Form::submit('Consultar', ['class' => 'btn btn-primary' ]) !!}    
+    <?php $exportarResultados = json_encode($resultados);?>
+    <a href="exportResultForm/{{$exportarResultados}}" class="btn  btn-danger">Exportar</a>  
   {!! Form::close() !!}
+  
   <br>
 
 
@@ -120,6 +121,7 @@
   @else     
     <h5 class = "h5">No existe ese DNI</h5>
   @endif
+  
 @endsection
 
 
