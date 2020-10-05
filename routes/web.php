@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Models\Worker;
-use \App\Models\Result;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,54 +13,10 @@ use \App\Models\Result;
 |
 */
 
-//rutas de archivos faltan corregir segun requerimientos---------------------------------------->
-
-Route::get('/subir', 'App\Http\Controllers\ReportController@subir');
-
-//Libreria Excel
-Route::get('export', 'App\Http\Controllers\RegistersController@export')->name('export');
-Route::get('importExportView', 'App\Http\Controllers\RegistersController@importExportView');
-Route::post('import', 'App\Http\Controllers\RegistersController@import')->name('import');
-
-//otra forma de subir y manejar archivos
-Route::get('/subir_archivo/{nombre}', function($nombre){
-    /*
-    $filename = "/info.txt";
-    $location = asset('uploads'). $filename;
-    
-    //echo $location;
-
-    $fp = fopen($location, "r");
-    while(!feof($fp)) {
-        $linea = fgets($fp);
-        echo $linea . "<br />";
-    }
-    fclose($fp);
-    
-    */
-    
-    // dd(File::allFiles('uploads'));
-    $files = File::allFiles('uploads');
-    foreach($files as $file){
-        echo $file . "</br>";
-
-        /*
-        if($file == "uploads/" . $nombre){
-            echo $file . "</br>";
-        }
-        */
-    } 
-    
-
-   // return (File::allFiles('uploads'));
-    
-});
-
-//Rutas para exportar importar archivos
-Route::get('/uploadfile','App\Http\Controllers\UploadFileController@index');
-Route::post('/uploadfile','App\Http\Controllers\UploadFileController@showUploadFile');
-//-------------------------------------------------------------------------------------------->
-
+//Rutas de archivos y reportes
+Route::resource('/reports', 'App\Http\Controllers\ReportController');
+Route::get('/exportWorker', 'App\Http\Controllers\ReportController@exportWorker')->name('exportWorker');
+Route::get('/exportResult', 'App\Http\Controllers\ReportController@exportResult')->name('exportResult');
 
 //Rutas autenticacion
 Auth::routes();

@@ -39,7 +39,7 @@
       </li>
       @if(Auth::user()->role_id < 3)
         <li class="nav-item">
-          <a class="nav-link" href="/subir">
+          <a class="nav-link" href="/reports">
             <span data-feather="bar-chart-2"></span>
             Reportes
           </a>

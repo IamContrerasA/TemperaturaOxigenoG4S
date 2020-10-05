@@ -2,19 +2,18 @@
 
 namespace App\Exports;
 
-use App\Models\Worker;
+use App\Models\Result;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 //Exporta un archivo excel, segun el modelo escogido
 
-class WorkersExport implements FromCollection
+class ResultsExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return Worker::all();
+        return Result::all();
     }
-    
 }

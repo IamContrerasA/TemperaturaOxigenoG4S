@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Exports\WorkersExport;
+use App\Exports\ResultsExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Worker;
 
+//Controlador para la gestion de los reportes y archivos
 
-//Controlador para la gestion de los archivos
-
+//class ReportController extends Controller  implements FromCollection
 class ReportController extends Controller
 {
     /**
@@ -19,7 +22,8 @@ class ReportController extends Controller
      */
     public function index()
     {        
-                   
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);     
+        return view("reports.index");
     }
 
     /**
@@ -87,11 +91,18 @@ class ReportController extends Controller
     {        
              
     }
+
     
-    public function subir()
-    {          
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);     
-        return view("file");  
-        
+    public function exportWorker() 
+    {
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);      
+        return Excel::download(new WorkersExport, 'trabajadores.xlsx');
     }
+
+    public function exportResult() 
+    {
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);      
+        return Excel::download((new ResultsExport), 'resultados.xlsx');
+    }
+    
 }
