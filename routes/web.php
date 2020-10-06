@@ -24,17 +24,21 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
 
-//Rutas crud usuarios
-Route::resource('admin/users', 'App\Http\Controllers\AdminUserController');
+Route::group(['middleware' => ['cors']], function () {
+  //Rutas a las que se permitirá acceso
 
-//Rutas crud areas
-Route::resource('admin/areas', 'App\Http\Controllers\AdminAreaController');
+  //Rutas crud usuarios
+  Route::resource('admin/users', 'App\Http\Controllers\AdminUserController');
 
-//Rutas crud rosters
-Route::resource('admin/rosters', 'App\Http\Controllers\AdminRosterController');
+  //Rutas crud areas
+  Route::resource('admin/areas', 'App\Http\Controllers\AdminAreaController');
 
-//Rutas crud workers
-Route::resource('workers', 'App\Http\Controllers\WorkersController');
+  //Rutas crud rosters
+  Route::resource('admin/rosters', 'App\Http\Controllers\AdminRosterController');
 
-//Rutas crud results
-Route::resource('workers/{id}/results', 'App\Http\Controllers\ResultsController');
+  //Rutas crud workers
+  Route::resource('workers', 'App\Http\Controllers\WorkersController');
+
+  //Rutas crud results
+  Route::resource('workers/{id}/results', 'App\Http\Controllers\ResultsController');
+});
