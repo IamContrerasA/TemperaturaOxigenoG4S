@@ -130,7 +130,6 @@ class WorkersController extends Controller
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
         $trabajador = Worker::findOrFail($id);
         $trabajador->results()->delete();
-        $trabajador ->delete();        
-                
+        $trabajador ->delete(); 
     }
 }

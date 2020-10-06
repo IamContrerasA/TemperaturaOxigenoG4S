@@ -32,7 +32,7 @@ class AdminRosterController extends Controller
      */
     public function create()
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);        
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         return view('admin.rosters.create');        
     }
 
@@ -44,7 +44,7 @@ class AdminRosterController extends Controller
      */
     public function store(Request $request)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $roster = new Roster;        
         $roster ->name = $request->name;        
         $roster->save();
@@ -60,7 +60,7 @@ class AdminRosterController extends Controller
      */
     public function show($id)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $roster = Roster::findOrFail($id);
         return view("admin.rosters.view", compact("roster"));        
     }
@@ -73,7 +73,7 @@ class AdminRosterController extends Controller
      */
     public function edit($id)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);        
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $roster = Roster::findOrFail($id);
         return view("admin.rosters.edit", compact("roster")); 
     }
@@ -87,7 +87,7 @@ class AdminRosterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $roster = Roster::findOrFail($id);        
         $roster ->name = $request->name;
         
@@ -104,7 +104,7 @@ class AdminRosterController extends Controller
      */
     public function destroy($id)
     {        
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $roster = Roster::findOrFail($id);
         $roster ->delete();        
     }

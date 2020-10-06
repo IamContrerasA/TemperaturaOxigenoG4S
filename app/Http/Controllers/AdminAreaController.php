@@ -32,7 +32,7 @@ class AdminAreaController extends Controller
      */
     public function create()
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);        
+        Auth::user()->authorizeRoles(['user', 'administrador']);        
         return view('admin.areas.create');        
     }
 
@@ -44,7 +44,7 @@ class AdminAreaController extends Controller
      */
     public function store(Request $request)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $area = new Area;        
         $area ->name = $request->name;        
         $area->save();
@@ -60,7 +60,7 @@ class AdminAreaController extends Controller
      */
     public function show($id)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $area = Area::findOrFail($id);
         return view("admin.areas.view", compact("area"));        
     }
@@ -73,7 +73,7 @@ class AdminAreaController extends Controller
      */
     public function edit($id)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);        
+        Auth::user()->authorizeRoles(['user', 'administrador']);        
         $area = Area::findOrFail($id);
         return view("admin.areas.edit", compact("area")); 
     }
@@ -87,7 +87,7 @@ class AdminAreaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $area = Area::findOrFail($id);        
         $area ->name = $request->name;
         
@@ -104,7 +104,7 @@ class AdminAreaController extends Controller
      */
     public function destroy($id)
     {        
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $area = Area::findOrFail($id);
         $area ->delete();        
     }

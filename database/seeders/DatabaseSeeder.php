@@ -73,9 +73,9 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => "otro"]);
         
         //crear usuarios
-        User::create(['role_id' => 1, 'name' => "Nombre Administrador",  'email' => "administrador@gamt.com.pe", 'password' => Hash::make("administrador")]);
-        User::create(['role_id' => 2, 'name' => "Nombre Operador",  'email' => "operador@gamt.com.pe", 'password' => Hash::make("operador")]);
-        User::create(['role_id' => 3, 'name' => "Nombre Supervisor",  'email' => "supervisor@gamt.com.pe", 'password' => Hash::make("supervisor")]);
+        User::create(['role_id' => 1, 'name' => "Nombre Administrador",  'email' => "administrador@gamt.com.pe", 'password' => Hash::make("Administrador1*")]);
+        User::create(['role_id' => 2, 'name' => "Nombre Operador",  'email' => "operador@gamt.com.pe", 'password' => Hash::make("Operador1*")]);
+        User::create(['role_id' => 3, 'name' => "Nombre Supervisor",  'email' => "supervisor@gamt.com.pe", 'password' => Hash::make("Supervisor1*")]);
 
     }
 }

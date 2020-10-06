@@ -4,8 +4,7 @@
 @section("contenido") 
 
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">INDEX ADMIN USER</h1>
-    <!--<p id="demo">a</p>-->
+    <h1 class="h2">INDEX ADMIN USER</h1>    
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">        
         <a href="/admin/users/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Crear Usuario</a>

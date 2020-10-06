@@ -32,7 +32,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $roles = Role::pluck('name', 'id');
         return view('admin.users.create', compact("roles"));        
     }
@@ -45,7 +45,7 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $usuario = new User;
         $usuario ->role_id = $request->role_id;
         $usuario ->name = $request->name;
@@ -64,7 +64,7 @@ class AdminUserController extends Controller
      */
     public function show($id)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $usuario = User::with('role')->select('users.*')->join('roles', 'roles.id', '=', 'users.role_id')->where('users.id', '=', $id)->get();        
         
         return view("admin.users.view", compact("usuario"));        
@@ -78,7 +78,7 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $roles = Role::pluck('name', 'id');
         $usuario = User::findOrFail($id);
         return view("admin.users.edit", compact("roles", "usuario")); 
@@ -93,7 +93,7 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $usuario = User::findOrFail($id);
         $usuario ->role_id = $request->role_id;
         $usuario ->name = $request->name;
@@ -115,7 +115,7 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {        
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        Auth::user()->authorizeRoles(['user', 'administrador']);
         $usuario = User::findOrFail($id);
         $usuario ->delete();        
     }

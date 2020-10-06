@@ -23,7 +23,8 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);   
         $trabajador = [];
         $resultados = [];
         $request = (object)['DNI' => 0, 'temperature' => 0, 'oxygen_saturation' => 0];   
@@ -48,8 +49,8 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //QUERY PARA conseguir los datos del form del index de results
-                
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        //QUERY PARA conseguir los datos del form del index de results                
         $resultados = [];      
         $trabajador = Worker::where('DNI', $request->DNI)->get();
         if(count($trabajador)){ 
@@ -137,11 +138,8 @@ class ReportController extends Controller
 
     public function exportResultForm($request) 
     {       
-        $resultados = json_decode($request);       
-        
-        return Excel::download((new ResultsExportForm($resultados)), 'resultados.xlsx');
-       
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        $resultados = json_decode($request);               
+        return Excel::download((new ResultsExportForm($resultados)), 'resultado_trabajador.xlsx');       
     }
-    
-    
 }
