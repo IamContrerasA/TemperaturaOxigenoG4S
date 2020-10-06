@@ -63,7 +63,7 @@ class AdminUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {         
         Auth::user()->authorizeRoles(['user', 'administrador']);
         $usuario = User::with('role')->select('users.*')->join('roles', 'roles.id', '=', 'users.role_id')->where('users.id', '=', $id)->get();        
         
@@ -117,6 +117,8 @@ class AdminUserController extends Controller
     {        
         Auth::user()->authorizeRoles(['user', 'administrador']);
         $usuario = User::findOrFail($id);
-        $usuario ->delete();        
+        if(!Auth::user()->hasRole("administrador")){           
+           $usuario ->delete();        
+        }
     }
 }
