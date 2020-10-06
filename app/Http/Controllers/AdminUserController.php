@@ -117,7 +117,7 @@ class AdminUserController extends Controller
     {        
         Auth::user()->authorizeRoles(['user', 'administrador']);
         $usuario = User::findOrFail($id);
-        if(!Auth::user()->hasRole("administrador")){           
+        if($usuario->role->name != "administrador"){           
            $usuario ->delete();        
         }
     }
