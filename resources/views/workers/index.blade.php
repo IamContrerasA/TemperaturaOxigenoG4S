@@ -4,12 +4,14 @@
 @section("contenido") 
   
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Lista de Trabajadores</h1>  
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <div class="btn-group mr-2">        
-      <a href="workers/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Crear Trabajador</a>
-    </div>     
-  </div>
+  <h1 class="h2">Lista de Trabajadores</h1>
+  @if(Auth::user()->role_id < 3)  
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2">        
+        <a href="workers/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Crear Trabajador</a>
+      </div>     
+    </div>
+  @endif
 </div>
 
   @if(count($trabajadores))
@@ -26,7 +28,9 @@
         <th scope="col">Fecha de Subida</th>
         <th scope="col">Fecha de Bajada</th>
         <th scope="col">Resultados</th>
-        <th scope="col">Opciones</th>          
+        @if(Auth::user()->role_id < 3)
+          <th scope="col">Opciones</th>
+        @endif          
       </tr>
     </thead>
     <tbody>
@@ -42,12 +46,14 @@
         <td>{{$trabajador->fecha_subida}}</td>
         <td>{{$trabajador->fecha_bajada}}</td>
         <td><a href= "/workers/{{ $trabajador -> id }}/results"> resultado </a></td>
-        <td>
-          <a href= "{{route('workers.show', $trabajador -> id) }}"> Ver </a> &nbsp;
-          <a href= "{{route('workers.edit', $trabajador -> id) }}"> Editar </a> &nbsp;
-          <meta name="csrf-token" content="{{ csrf_token() }}">
-          <a href="{{ route('workers.destroy', $trabajador->id) }}" data-method="delete" class="jquery-postback">Delete</a>
-        </td> 
+        @if(Auth::user()->role_id < 3)
+          <td>
+            <a href= "{{route('workers.show', $trabajador -> id) }}"> Ver </a> &nbsp;
+            <a href= "{{route('workers.edit', $trabajador -> id) }}"> Editar </a> &nbsp;
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+            <a href="{{ route('workers.destroy', $trabajador->id) }}" data-method="delete" class="jquery-postback">Delete</a>
+          </td> 
+        @endif
       </tr>
     @endforeach 
 

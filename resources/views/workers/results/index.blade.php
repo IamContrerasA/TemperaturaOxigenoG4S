@@ -5,11 +5,13 @@
       
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">{{$trabajador->name}}</h1>    
-    <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">        
-        <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
-      </div>     
-    </div>
+    @if(Auth::user()->role_id < 3)
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">        
+          <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
+        </div>     
+      </div>
+    @endif
   </div>
 
   @if(count($results))
@@ -24,7 +26,9 @@
           <th>Fecha</th>
           <th>Temperatura</th>
           <th>Saturación de Oxigeno</th>
-          <th>Opciones</th>
+          @if(Auth::user()->role_id < 3)
+            <th>Opciones</th>
+          @endif
         </tr>
       </thead>
       <tbody>
@@ -32,13 +36,15 @@
         <tr>
           <td>{{$result->date}}</td>
           <td>{{$result->temperature}}</td>
-          <td>{{$result->oxygen_saturation}}</td> 
-          <td>
-            <a href= "results/{{$result->id}}"> Ver </a> &nbsp;            
-            <a href= "results/{{$result->id}}/edit"> Editar </a> &nbsp;
-            <meta name="csrf-token" content="{{ csrf_token() }}">
-            <a href="results/{{$result->id}}" data-method="delete" class="jquery-postback">Delete</a>
-          </td>            
+          <td>{{$result->oxygen_saturation}}</td>
+          @if(Auth::user()->role_id < 3) 
+            <td>
+              <a href= "results/{{$result->id}}"> Ver </a> &nbsp;            
+              <a href= "results/{{$result->id}}/edit"> Editar </a> &nbsp;
+              <meta name="csrf-token" content="{{ csrf_token() }}">
+              <a href="results/{{$result->id}}" data-method="delete" class="jquery-postback">Delete</a>
+            </td>            
+          @endif
         </tr>
       @endforeach 
       </tbody>

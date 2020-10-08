@@ -31,12 +31,15 @@
       </li>
       @endif 
 
-      <li class="nav-item">
-        <a class="nav-link" href="/workers">
-          <span data-feather="activity"></span>
-          Trabajadores
-        </a>
-      </li>
+      @if(Auth::user()->role_id < 4)
+        <li class="nav-item">
+          <a class="nav-link" href="/workers">
+            <span data-feather="activity"></span>
+            Trabajadores
+          </a>
+        </li>
+      @endif 
+      
       @if(Auth::user()->role_id < 3)
         <li class="nav-item">
           <a class="nav-link" href="/reports">

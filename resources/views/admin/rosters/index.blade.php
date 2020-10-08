@@ -4,13 +4,14 @@
 @section("contenido") 
 
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">INDEX ADMIN ROSTERR</h1>
-    <!--<p id="demo">a</p>-->
-    <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">        
-        <a href="/admin/rosters/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Crear Roster</a>
-      </div>     
-    </div>
+    <h1 class="h2">INDEX ADMIN ROSTERS</h1>
+    @if(Auth::user()->role_id == 1)
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">        
+          <a href="/admin/rosters/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Crear Roster</a>
+        </div>     
+      </div>
+    @endif
   </div>
  
   @if(count($rosters))
@@ -19,8 +20,10 @@
       <thead class="thead-dark">
         <tr>          
           <th scope="col">Id</th>
-          <th scope="col">Nombre</th>          
-          <th scope="col">Opciones</th>          
+          <th scope="col">Nombre</th> 
+          @if(Auth::user()->role_id == 1)         
+            <th scope="col">Opciones</th>         
+          @endif 
         </tr>
       </thead>
       <tbody>
@@ -28,13 +31,15 @@
       @foreach($rosters as $roster)
         <tr>          
           <td>{{$roster->id}}</td>
-          <td>{{$roster->name}}</td>         
-          <td>
-            <a href= "{{route('rosters.show', $roster -> id) }}"> Ver </a> &nbsp;
-            <a href= "{{route('rosters.edit', $roster -> id) }}"> Editar </a> &nbsp;
-            <meta name="csrf-token" content="{{ csrf_token() }}">
-            <a href="{{ route('rosters.destroy', $roster->id) }}" data-method="delete" class="jquery-postback">Delete</a>
-          </td>          
+          <td>{{$roster->name}}</td>
+          @if(Auth::user()->role_id == 1)         
+            <td>
+              <a href= "{{route('rosters.show', $roster -> id) }}"> Ver </a> &nbsp;
+              <a href= "{{route('rosters.edit', $roster -> id) }}"> Editar </a> &nbsp;
+              <meta name="csrf-token" content="{{ csrf_token() }}">
+              <a href="{{ route('rosters.destroy', $roster->id) }}" data-method="delete" class="jquery-postback">Delete</a>
+            </td>          
+          @endif
         </tr>
       @endforeach 
 

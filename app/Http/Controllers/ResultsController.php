@@ -19,7 +19,7 @@ class ResultsController extends Controller
      */
     public function index($id)
     {           
-        Auth::user()->authorizeRoles(['user', 'administrador', 'supervisor']);
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador','supervisor']);
         $results = Result::where('worker_id', '=', $id)->orderBy('date', 'asc')->get();
         $trabajador = Worker::find($id);
         return view("workers.results.index", compact("results", "trabajador"));  
