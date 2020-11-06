@@ -62,7 +62,7 @@ class WorkersController extends Controller
 
         $worker->save();
         
-        return $this->index();
+        return redirect(route('workers.index'));
     }
 
     /**
