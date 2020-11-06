@@ -62,6 +62,7 @@ class WorkersController extends Controller
 
         $worker->save();
         
+        
         return redirect(secure_url(route('workers.index')));
     }
 
