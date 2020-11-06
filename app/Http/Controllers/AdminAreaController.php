@@ -49,7 +49,7 @@ class AdminAreaController extends Controller
         $area ->name = $request->name;        
         $area->save();
 
-        return $this->index(); 
+        return redirect('/admin/areas');
     }
 
     /**

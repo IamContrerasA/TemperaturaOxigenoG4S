@@ -7,6 +7,7 @@
     </div>
   
     {!! Form::open(['method' => 'POST', 'action' => 'App\Http\Controllers\AdminAreaController@store']) !!}
+        @csrf
         <table>
             <tr>
                 <td>{!! Form::label('name', 'Nombre') !!} </td>
@@ -17,7 +18,7 @@
                 <td >{!! Form::submit('Crear Area', ['class' => 'btn btn-primary' ]) !!} </td>
                 <td>{!! Form::reset('Borrar', ['class' => 'btn btn-danger' ]) !!} </td>
             </tr>            
-
         </table>
     {!! Form::close() !!}
+    
 @endsection
