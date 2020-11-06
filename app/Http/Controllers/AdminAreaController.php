@@ -48,8 +48,8 @@ class AdminAreaController extends Controller
         $area = new Area;        
         $area ->name = $request->name;        
         $area->save();
-        return \App::make('redirect')->refresh();
-        //return \App::make('redirect')->to("/admin/areas")->refresh()->with('flash_success', 'Thank you,!');
+
+        return redirect("/admin/areas");
     }
 
     /**
