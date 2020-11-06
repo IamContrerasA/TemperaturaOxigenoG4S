@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => ['cors']], function () {
-  //Rutas a las que se permitirá acceso
+
 
   //Rutas de archivos y reportes
   Route::resource('/reports', 'App\Http\Controllers\ReportController');
@@ -25,7 +24,9 @@ Route::group(['middleware' => ['cors']], function () {
   Auth::routes();
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
   Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
-
+  
+Route::group(['middleware' => ['cors']], function () {
+  //Rutas a las que se permitirá acceso
   //Rutas crud usuarios
   Route::resource('admin/users', 'App\Http\Controllers\AdminUserController');
 
