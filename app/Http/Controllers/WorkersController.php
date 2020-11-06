@@ -116,7 +116,7 @@ class WorkersController extends Controller
         
         $trabajador->update();
       
-        return redirect('/workers');
+        return $this->index();
     }
 
     /**

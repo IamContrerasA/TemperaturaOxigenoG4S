@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Editar Resultado del trabajador {{$resultado->worker_id}}</h1>         
     </div>
-  
+    
     {!! Form::model($resultado, ['method' => 'PATCH', 'url' => 'workers/'.$resultado->worker_id.'/results/'.$resultado->id]) !!}    
         <table>
             <tr>

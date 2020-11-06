@@ -53,7 +53,7 @@ class AdminUserController extends Controller
         $usuario ->password = Hash::make($request->password);
         $usuario->save();
 
-        return redirect('/admin/users'); 
+        return $this->index();
     }
 
     /**
@@ -104,7 +104,7 @@ class AdminUserController extends Controller
 
         $usuario->update();
 
-        return redirect('/admin/users');
+        return $this->index();
     }
 
     /**

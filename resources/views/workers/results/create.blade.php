@@ -6,7 +6,7 @@
     <h1 class="h2">Añadir Resultado al trabajador {{$trabajador->name}}</h1>           
     </div>
 
-    {!! Form::open(['method' => 'POST', 'url' => 'workers/{$id}/results']) !!}
+    {!! Form::open(['method' => 'POST', 'url' => 'workers/'.$trabajador->id.'/results']) !!}
         <table>
             <tr>
                 <td>{!! Form::label('worker_id', 'Trabajador ID') !!} </td>

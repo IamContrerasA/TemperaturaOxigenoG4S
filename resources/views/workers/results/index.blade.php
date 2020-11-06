@@ -39,8 +39,8 @@
           <td>{{$result->oxygen_saturation}}</td>
           @if(Auth::user()->role_id < 3) 
             <td>
-              <a href= "results/{{$result->id}}"> Ver </a> &nbsp;            
-              <a href= "results/{{$result->id}}/edit"> Editar </a> &nbsp;
+              <a href= "results/{{$result->id}}"> Ver </a> &nbsp;
+              <a href= "{{route('results.edit', [$trabajador -> id, $result -> id]) }}"> Editar </a> &nbsp;
               <meta name="csrf-token" content="{{ csrf_token() }}">
               <a href="results/{{$result->id}}" data-method="delete" class="jquery-postback">Delete</a>
             </td>            
@@ -78,7 +78,7 @@
             type: $this.data('method'),
             url: $this.attr('href')
         }).done(function (data) {
-            alert('Usuario borrado exitosamente');
+            alert('Resultado borrado exitosamente');
             console.log(data);
             window.location.reload();
         });
