@@ -61,8 +61,8 @@ class WorkersController extends Controller
         $worker ->fecha_bajada = $request->fecha_bajada;        
 
         $worker->save();
-
-        return redirect('/workers'); 
+        
+        return $this->index();
     }
 
     /**
