@@ -12,20 +12,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//Rutas de archivos y reportes
-Route::resource('/reports', 'App\Http\Controllers\ReportController');
-Route::get('/exportWorker', 'App\Http\Controllers\ReportController@exportWorker')->name('exportWorker');
-Route::get('/exportResult', 'App\Http\Controllers\ReportController@exportResult')->name('exportResult');
-Route::get('exportResultForm/{id}', 'App\Http\Controllers\ReportController@exportResultForm');
-
-//Rutas autenticacion
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
-
 Route::group(['middleware' => ['cors']], function () {
   //Rutas a las que se permitirá acceso
+
+  //Rutas de archivos y reportes
+  Route::resource('/reports', 'App\Http\Controllers\ReportController');
+  Route::get('/exportWorker', 'App\Http\Controllers\ReportController@exportWorker')->name('exportWorker');
+  Route::get('/exportResult', 'App\Http\Controllers\ReportController@exportResult')->name('exportResult');
+  Route::get('exportResultForm/{id}', 'App\Http\Controllers\ReportController@exportResultForm');
+
+  //Rutas autenticacion
+  Auth::routes();
+  Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+  Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
 
   //Rutas crud usuarios
   Route::resource('admin/users', 'App\Http\Controllers\AdminUserController');
