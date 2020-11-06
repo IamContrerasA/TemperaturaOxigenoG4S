@@ -49,7 +49,7 @@ class AdminRosterController extends Controller
         $roster ->name = $request->name;        
         $roster->save();
 
-        return $this->index();
+        return redirect("/admin/rosters");
     }
 
     /**
@@ -93,7 +93,7 @@ class AdminRosterController extends Controller
         
         $roster->update();
       
-        return $this->index();
+        return redirect("/admin/rosters");
     }
 
     /**

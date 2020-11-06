@@ -25,7 +25,7 @@
 
             <tr>
                 <td>{!! Form::label('DNI', 'DNI') !!} </td>
-                <td>{!! Form::number('DNI', null, ['class' => 'form-control', 'required']) !!} </td>
+                <td>{!! Form::number('DNI', null, ['class' => 'form-control', 'required' , 'max' => 99999999 ] ) !!} </td>
             </tr>  
 
             <tr>

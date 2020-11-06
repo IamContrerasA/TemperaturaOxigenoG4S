@@ -54,7 +54,7 @@ class ResultsController extends Controller
         
         $resultado->save();
 
-        return $this->index($request->worker_id); 
+        return redirect('/workers/'.$request->worker_id.'/results'); 
         
     }
 
@@ -103,8 +103,9 @@ class ResultsController extends Controller
         $resultado ->temperature = $request->temperature;
         $resultado ->date = $request->date;        
         
-        $resultado->update();        
-        return $this->index($id_worker);  
+        $resultado->update();     
+        
+        return redirect('/workers/'.$id_worker.'/results');         
    
     }
 

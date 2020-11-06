@@ -60,10 +60,9 @@ class WorkersController extends Controller
         $worker ->fecha_subida = $request->fecha_subida;
         $worker ->fecha_bajada = $request->fecha_bajada;        
 
-        $worker->save();
-        
+        $worker->save();        
 
-        return $this->index();
+        return redirect("/workers");
     }
 
     /**
@@ -117,7 +116,7 @@ class WorkersController extends Controller
         
         $trabajador->update();
       
-        return $this->index();
+        return redirect("/workers");
     }
 
     /**
