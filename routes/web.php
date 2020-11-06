@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => ['cors']], function () {
+Route::group(['middleware' => ['cors','https']], function () {
   //Rutas a las que se permitirá acceso
 
   //Rutas de archivos y reportes
