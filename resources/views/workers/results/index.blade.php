@@ -11,7 +11,7 @@
           <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
         </div>   
         <div class="btn-group mr-2">     
-          <a href="" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cargar Resultado</a>
+          <a href="" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onclick = "load_result();">Cargar Resultado</a>
         </div>     
       </div>
      
@@ -88,6 +88,18 @@
         });
       }      
     });
+    
+    function load_result(){
+    alert('ingresa a cargar');
+    $.post({
+            type: $this.data('method'),
+            url: {{route('results.load')}}
+        }).done(function (data) {
+            alert('Cargo exitosamente');            
+            window.location.reload();
+        });
+    return false;
+    }
     
   </script>
   
