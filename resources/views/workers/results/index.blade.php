@@ -4,14 +4,15 @@
 @section("contenido")    
       
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">{{$trabajador->name}}</h1>    
+    <h1 class="h2">{{$trabajador->name}}</h1>
+    <input type="text" id="idtrabajador" name="idtrabajador">{{$trabajador->id}}</>
     @if(Auth::user()->role_id < 3)
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">        
           <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
         </div>   
         <div class="btn-group mr-2">     
-          <a href="" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onclick = "load_result();">Cargar Resultado</a>
+          <a id="Enviar" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cargar Resultado</a>
         </div>     
       </div>
      
@@ -89,17 +90,19 @@
       }      
     });
     
-    function load_result(){
-    alert('ingresa a cargar');
-    $.post({
-            type: $this.data('method'),
-            url: {{route('results.load')}}
-        }).done(function (data) {
-            alert('Cargo exitosamente');            
-            window.location.reload();
-        });
-    return false;
-    }
+ $("#Enviar").click(function (e) {
+    e.preventDefault();
+    var id_worker = $('#idtrabajador').val();
+    $.ajax({
+        type: "post",
+        url: "load",
+        data: {
+            id_worker: id_worker
+        }, success: function (msg) {
+                alert("Se ha realizado el POST con exito "+msg);
+        }
+    });
+});
     
   </script>
   
