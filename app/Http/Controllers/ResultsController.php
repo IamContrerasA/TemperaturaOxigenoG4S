@@ -22,6 +22,16 @@ class ResultsController extends Controller
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador','supervisor']);
         $results = Result::where('worker_id', '=', $id)->orderBy('date', 'asc')->get();
         $trabajador = Worker::find($id);
+      
+        $resultado = new Result;
+        $resultado ->worker_id = 9;
+        $resultado ->oxygen_saturation = 88;
+        $resultado ->temperature = 60;
+        $resultado ->date = new DateTime('today');        
+        
+        $resultado->save();
+      
+      
         return view("workers.results.index", compact("results", "trabajador"));  
     }
 
