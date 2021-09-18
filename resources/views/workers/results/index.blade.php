@@ -14,11 +14,7 @@
         <div class="btn-group mr-2"> 
           <button class="btn btn-success btn-submit">Cargar Resultado</button>
         </div>    
-        <div class="btn-group mr-2"> 
-         <a href= "{{route('results.load', [$trabajador -> id]) }}"> Cargar </a> &nbsp;
-              <meta name="csrf-token" content="{{ csrf_token() }}">  
-         </div>       
-      </div>
+        
      
     @endif
   </div>
@@ -106,7 +102,7 @@ $.ajaxSetup({
         var id = $("input[name=id]").val();   
         $.ajax({
            type:'POST',
-           url:"{{ route('results.load') }}",
+           url:"{{ route('load') }}",
            data:{id_worked:id},
            success:function(data){
               alert(data.success);
