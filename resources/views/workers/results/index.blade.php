@@ -13,6 +13,7 @@
         </div>   
         <div class="btn-group mr-2"> 
           <button class="btn btn-success btn-submit">Cargar Resultado</button>
+          <meta name="csrf-token" content="{{ csrf_token() }}">
         </div>  
        </div> 
     @endif
@@ -89,18 +90,18 @@
       }      
     });
     
-$.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-    });
+
  $(".btn-submit").click(function(e){
           e.preventDefault();   
-        var id = $("input[name=id]").val();   
+        var id = $("input[name=id]").val(); 
+        
         $.ajax({
            type:'POST',
            url:"{{ route('load') }}",
-           data:{id_worked:id},
+           data:{
+           "_token": "{{ csrf_token() }}",
+           id_worked:id
+           },
            success:function(data){
               alert(data.success);
            }
