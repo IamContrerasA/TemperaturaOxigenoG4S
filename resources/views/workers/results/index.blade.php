@@ -11,6 +11,11 @@
           <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
         </div>     
       </div>
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">        
+          <a href="results/load" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cargar Resultado</a>
+        </div>     
+      </div>
     @endif
   </div>
 
