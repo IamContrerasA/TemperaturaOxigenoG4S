@@ -69,8 +69,8 @@ class ResultsController extends Controller
         $resultado ->date = new DateTime('today');        
         
         $resultado->save();
-
-        return redirect('/workers/'.$request->worker_id.'/results'); 
+        
+        return redirect('/workers/'.$id_worker.'/results'); 
         
     }
   
