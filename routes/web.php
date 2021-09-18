@@ -41,4 +41,8 @@ Route::group(['middleware' => ['cors']], function () {
 
   //Rutas crud results
   Route::resource('workers/{id}/results', 'App\Http\Controllers\ResultsController');
+  //Ruta acceso a loadresultados
+  
+  Route::post('load', [ResultsController::class, 'load'])->name('load');
+  
 });
