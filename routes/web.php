@@ -19,12 +19,16 @@ use Illuminate\Support\Facades\Route;
   Route::get('/exportWorker', 'App\Http\Controllers\ReportController@exportWorker')->name('exportWorker');
   Route::get('/exportResult', 'App\Http\Controllers\ReportController@exportResult')->name('exportResult');
   Route::get('exportResultForm/{id}', 'App\Http\Controllers\ReportController@exportResultForm');
-
+  
   //Rutas autenticacion
   Auth::routes();
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
   Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
+
   
+  //Ruta acceso a load result
+  Route::post('/load', 'App\Http\Controllers\ResultsController@load')->name('load');
+
 Route::group(['middleware' => ['cors']], function () {
   //Rutas a las que se permitirá acceso
   //Rutas crud usuarios
@@ -41,9 +45,7 @@ Route::group(['middleware' => ['cors']], function () {
 
   //Rutas crud results
   Route::resource('workers/{id}/results', 'App\Http\Controllers\ResultsController');
-  
-  //Ruta acceso a load result
-  Route::post('/load', 'App\Http\Controllers\ResultsController@load')->name('load');
+
  
   
 });
