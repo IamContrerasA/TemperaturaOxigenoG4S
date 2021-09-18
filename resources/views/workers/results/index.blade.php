@@ -101,7 +101,8 @@ $(".btn-submit").click(function(e){
            url:"https://pacific-caverns-02399.herokuapp.com/workers/9/results/",
            data:{
            "_token": "{{ csrf_token() }}",
-           id_worked:id
+           id_worked:id,
+           load : 1;
            },
            success:function(data){
               alert(data.success);
