@@ -98,7 +98,7 @@
         
         $.ajax({
            type:'POST',
-           url:"{{ route('ajaxRequest.post') }}",
+           url:"{{ route('load') }}",
            data:{
            "_token": "{{ csrf_token() }}",
            id_worked:id
