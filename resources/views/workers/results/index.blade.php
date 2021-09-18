@@ -98,7 +98,7 @@ $(".btn-submit").click(function(e){
         
         $.ajax({
            type:'POST',
-           url:"{{route('results.load')}}",
+           url:"/results/load",
            data:{
            "_token": "{{ csrf_token() }}",
            id_worked:id
