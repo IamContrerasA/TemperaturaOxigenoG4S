@@ -13,7 +13,7 @@
         </div>   
          <div class="btn-group mr-2">   
           <button class="btn btn-success btn-submit">Cargar Resultado</button>
-           <meta name="csrf-token" content="{{ csrf_token() }}" />
+          
         </div>
        </div> 
        
