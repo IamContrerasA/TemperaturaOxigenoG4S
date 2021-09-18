@@ -11,8 +11,9 @@
         <div class="btn-group mr-2">        
           <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
         </div>   
-        <div class="btn-group mr-2">     
-          <a href="results/{{$trabajador->id}}" id="Enviar" name="Enviar" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cargar Resultado</a>
+        <div class="btn-group mr-2"> 
+          <button type="submit" class="btn btn-primary"  onclick="GrabarExcepcion();">Cargar Resultado</button>
+          <button id="Enviar" name = "Enviar" class="btn btn-primary" type="button">Cargar</button> 
         </div>     
       </div>
      
@@ -105,6 +106,12 @@
         }
     });
 });
+    
+    
+function GrabarExcepcion() {
+  alert("carga");
+  return false;
+}
     
   </script>
   
