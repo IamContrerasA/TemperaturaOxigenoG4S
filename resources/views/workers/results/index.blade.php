@@ -93,11 +93,13 @@
  $("#Enviar").click(function (e) {
     e.preventDefault();
     var id_worker =9 ;
+    var token = '{{csrf_token()}}';
+    var data={id_worker:id_worker,_token:token};
     $.ajax({
         type: "post",
-        url: "load",
+        url: "{{route('results.load')}}",
         data: {
-            id_worker: id_worker
+            data
         }, success: function (msg) {
                 alert("Se ha realizado el POST con exito "+msg);
         }
