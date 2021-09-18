@@ -5,14 +5,14 @@
       
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">{{$trabajador->name}}</h1>
-    <input type="text" id="idtrabajador" name="idtrabajador">{{$trabajador->id}}</>
-    @if(Auth::user()->role_id < 3)
+    
+     @if(Auth::user()->role_id < 3)
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">        
           <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
         </div>   
         <div class="btn-group mr-2">     
-          <a id="Enviar" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cargar Resultado</a>
+          <a href="results/{{$trabajador->id}}" id="Enviar" name="Enviar" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cargar Resultado</a>
         </div>     
       </div>
      
@@ -92,7 +92,7 @@
     
  $("#Enviar").click(function (e) {
     e.preventDefault();
-    var id_worker = $('#idtrabajador').val();
+    var id_worker =9 ;
     $.ajax({
         type: "post",
         url: "load",
