@@ -58,6 +58,22 @@ class ResultsController extends Controller
         
     }
 
+    public function load(Request $request)
+    {
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+       /* cargar el archivo **/
+        $resultado = new Result;
+        $resultado ->worker_id = $request->worker_id;
+        $resultado ->oxygen_saturation = 80;
+        $resultado ->temperature = 60;
+        $resultado ->date = new DateTime('today');        
+        
+        $resultado->save();
+
+        return redirect('/workers/'.$request->worker_id.'/results'); 
+        
+    }
+  
     /**
      * Display the specified resource.
      *
