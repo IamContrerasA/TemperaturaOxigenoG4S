@@ -12,7 +12,7 @@
           <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
         </div>   
         <div class="btn-group mr-2"> 
-          <button type="submit" class="btn btn-primary"  onclick="GrabarExcepcion();">Cargar Resultado</button>
+          <button type="submit" class="btn btn-primary"  onclick="GrabarResultado();">Cargar Resultado</button>
         </div>    
         <div class="btn-group mr-2"> 
           <button id="Enviar" name="Enviar" class="btn btn-primary" type="button">Cargar</button> 
@@ -93,7 +93,7 @@
       }      
     });
     
-function CargarExcepcion() {
+function GrabarResultado() {
     $.ajax({
         type: "POST",
         url: "/results/load",
