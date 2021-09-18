@@ -13,9 +13,8 @@
         </div>   
         <div class="btn-group mr-2"> 
           <button class="btn btn-success btn-submit">Cargar Resultado</button>
-        </div>    
-        
-     
+        </div>  
+       </div> 
     @endif
   </div>
 
@@ -102,7 +101,7 @@ $.ajaxSetup({
         var id = $("input[name=id]").val();   
         $.ajax({
            type:'POST',
-           url:"{{ route('load') }}",
+           url:"{{ route('results.load') }}",
            data:{id_worked:id},
            success:function(data){
               alert(data.success);
