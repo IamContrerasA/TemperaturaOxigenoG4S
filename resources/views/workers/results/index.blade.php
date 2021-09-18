@@ -5,7 +5,7 @@
       
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">{{$trabajador->name}}</h1>
-    
+    <input type="id" name="id" class="form-control" value="{{$trabajador->id}}" required="">
      @if(Auth::user()->role_id < 3)
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">        
@@ -92,13 +92,15 @@
     });
     
 function GrabarResultado() {
+    event.preventDefault();
+    var id = $("input[name=id]").val();
+    var _token   = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type: "POST",
-        url: "/Results/load",
-        data: "{id_worker:9}",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (data) {
+        url: "/load",
+        data: " id_worked:id,
+          _token: _token",
+           success: function (data) {
            window.location.reload();
             
         }
