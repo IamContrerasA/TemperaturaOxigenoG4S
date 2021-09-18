@@ -23,7 +23,7 @@ class ResultsController extends Controller
         $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
         $trabajador = Worker::find($request->id);
         
-        if ($request->load == '1' )
+        if ($request->load == '1' || $request->load == 1)
         {
         $resultado = new Result;
         $resultado ->worker_id = $request->id;
@@ -33,7 +33,7 @@ class ResultsController extends Controller
         $resultado->save();
         $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
         $trabajador = Worker::find($request->id);
-        return redirect('/workers/'.$request->id.'/results'); 
+        return redirect('/workers/8/results'); 
         }
         else
         {
