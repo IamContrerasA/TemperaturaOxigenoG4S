@@ -21,9 +21,9 @@ class ResultsController extends Controller
     {           
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador','supervisor']);
         $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
-        $trabajador = Worker::find($id);
+        $trabajador = Worker::find($request->id);
         
-        if ($request->load = 1)
+        /*if ($request->load = 1)
         {
         $resultado = new Result;
         $resultado ->worker_id = $request->worker_id;
@@ -33,7 +33,7 @@ class ResultsController extends Controller
         $resultado->save();
         $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
         $trabajador = Worker::find($id);
-        }
+        }*/
       
         return view("workers.results.index", compact("results", "trabajador"));  
     }
