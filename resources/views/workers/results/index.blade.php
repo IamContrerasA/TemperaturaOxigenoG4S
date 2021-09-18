@@ -6,16 +6,13 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">{{$trabajador->name}}</h1>    
     @if(Auth::user()->role_id < 3)
-      <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">        
+      <div class="btn-toolbar mb-4 mb-md-0">
+        <div class="btn-group mr-4">        
           <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
-        </div>     
-      </div>
-      <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">        
           <a href="results/load" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cargar Resultado</a>
         </div>     
       </div>
+     
     @endif
   </div>
 
