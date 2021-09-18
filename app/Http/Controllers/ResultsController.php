@@ -23,17 +23,17 @@ class ResultsController extends Controller
         $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
         $trabajador = Worker::find($request->id);
         
-        /*if ($request->load = 1)
+        if ($request->load == 1)
         {
         $resultado = new Result;
-        $resultado ->worker_id = $request->worker_id;
-        $resultado ->oxygen_saturation = $request->oxygen_saturation;
-        $resultado ->temperature = $request->temperature;
-        $resultado ->date = $request->date;
+        $resultado ->worker_id = $request->id;
+        $resultado ->oxygen_saturation = 65;
+        $resultado ->temperature = 25;
+        $resultado ->date = new DateTime('today');
         $resultado->save();
         $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
-        $trabajador = Worker::find($id);
-        }*/
+        $trabajador = Worker::find($request->id);
+        }
       
         return view("workers.results.index", compact("results", "trabajador"));  
     }
