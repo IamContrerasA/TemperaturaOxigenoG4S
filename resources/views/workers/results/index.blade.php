@@ -93,7 +93,19 @@
       }      
     });
     
-
+function CargarExcepcion() {
+    $.ajax({
+        type: "POST",
+        url: "/results/load",
+        data: "{id_worker:9}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+           window.location.reload();
+            
+        }
+    });
+}
     
   </script>
   
