@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 
   
   //Ruta acceso a load result
+   Route::get('ajaxRequest', [ResultsController::class, 'ajaxRequest']);
   Route::post('ajaxRequest', [ResultsController::class, 'ajaxRequestPost'])->name('ajaxRequest.post');
 
 Route::group(['middleware' => ['cors']], function () {
