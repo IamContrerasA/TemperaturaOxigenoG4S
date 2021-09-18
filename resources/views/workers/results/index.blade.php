@@ -96,7 +96,7 @@
 function GrabarResultado() {
     $.ajax({
         type: "POST",
-        url: "/results/load",
+        url: "/Results/load",
         data: "{id_worker:9}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
