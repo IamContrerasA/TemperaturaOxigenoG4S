@@ -12,7 +12,7 @@
           <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
         </div>   
         <div class="btn-group mr-2"> 
-          <button type="submit" class="btn btn-primary"  onclick="GrabarResultado();">Cargar Resultado</button>
+          <button class="btn btn-success btn-submit">Cargar Resultado</button>
         </div>    
             
       </div>
@@ -91,21 +91,27 @@
       }      
     });
     
-function GrabarResultado() {
-    event.preventDefault();
-    var id = $("input[name=id]").val();
-    var _token   = $('meta[name="csrf-token"]').attr('content');
-    $.ajax({
-        type: "POST",
-        url: "/load",
-        data: " id_worked:id,
-          _token: _token",
-           success: function (data) {
-           window.location.reload();
-            
-        }
+$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
     });
-}
+ $(".btn-submit").click(function(e){
+  
+        e.preventDefault();
+   
+        var id = $("input[name=id]").val();   
+        $.ajax({
+           type:'POST',
+           url:"{{ route('load') }}",
+           data:{id_worked:id},
+           success:function(data){
+              alert(data.success);
+           }
+        });
+  
+    });
+    
     
   </script>
   
