@@ -105,7 +105,8 @@ $(".btn-submit").click(function(e){
            url : "https://pacific-caverns-02399.herokuapp.com/workers/" + id + "/results/",
            data:data,
            success:function(data){
-              alert(data.success);
+              
+               window.location.reload();
            }
         });
   
