@@ -94,13 +94,11 @@
     
 $(".btn-submit").click(function(e){
         e.preventDefault();
-        var $this = $(this);
         var id = $("input[name=id]").val(); 
-        var load = 1;
-        
+        var load = 1;        
         $.ajax({
            type:'POST',
-           url:"https://pacific-caverns-02399.herokuapp.com/workers/9/results/",
+           url:"https://pacific-caverns-02399.herokuapp.com/workers/" + id + "/results/",
            data:{
            id_worked:id,
            load : load
