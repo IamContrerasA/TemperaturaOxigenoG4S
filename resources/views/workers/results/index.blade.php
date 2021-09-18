@@ -102,7 +102,7 @@ $(".btn-submit").click(function(e){
            data:{
            "_token": "{{ csrf_token() }}",
            id_worked:id,
-           load : 1;
+           load : 1
            },
            success:function(data){
               alert(data.success);
