@@ -91,6 +91,25 @@
       }      
     });
     
+    
+$(".btn-submit").click(function(e){
+        e.preventDefault();   
+        var id = $("input[name=id]").val(); 
+        
+        $.ajax({
+           type:'POST',
+           url:"{{route('results.load')}}",
+           data:{
+           "_token": "{{ csrf_token() }}",
+           id_worked:id
+           },
+           success:function(data){
+              alert(data.success);
+           }
+        });
+  
+    });
+    
 
  
     
