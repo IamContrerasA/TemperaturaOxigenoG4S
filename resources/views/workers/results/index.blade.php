@@ -98,10 +98,14 @@ $(".btn-submit").click(function(e){
         var load = 1;
         var token = '{{csrf_token()}}';
         var data={id_worked:id,load:load,_token:token};
+        var url = {{ url('/results/post') }};
+        
+        
+        
         alert(data);
         $.ajax({
            type:'POST',
-           url:"https://pacific-caverns-02399.herokuapp.com/workers/" + id + "/results/",
+           url : url,
            data:data,
            success:function(data){
               alert(data.success);
