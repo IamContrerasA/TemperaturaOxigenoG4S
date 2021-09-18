@@ -14,9 +14,7 @@
         <div class="btn-group mr-2"> 
           <button type="submit" class="btn btn-primary"  onclick="GrabarResultado();">Cargar Resultado</button>
         </div>    
-        <div class="btn-group mr-2"> 
-          <button id="Enviar" name="Enviar" class="btn btn-primary" type="button">Cargar</button> 
-        </div>     
+            
       </div>
      
     @endif
@@ -96,7 +94,7 @@
 function GrabarResultado() {
     $.ajax({
         type: "POST",
-        url: "/Results/load",
+        url: "{{route('Results.load')}}",
         data: "{id_worker:9}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
