@@ -20,8 +20,7 @@ class ResultsController extends Controller
     public function index(Request $request)
     {           
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador','supervisor']);
-        $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
-        $trabajador = Worker::find($request->id);
+       
         
         if ($request->load == '1' || $request->load == 1)
         {
@@ -37,6 +36,8 @@ class ResultsController extends Controller
         }
         else
         {
+         $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
+        $trabajador = Worker::find($request->id);
         return view("workers.results.index", compact("results", "trabajador"));  
         }
     }
