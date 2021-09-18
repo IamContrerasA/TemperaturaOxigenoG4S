@@ -13,7 +13,9 @@
         </div>   
         <div class="btn-group mr-2"> 
           <button type="submit" class="btn btn-primary"  onclick="GrabarExcepcion();">Cargar Resultado</button>
-          <button id="Enviar" name = "Enviar" class="btn btn-primary" type="button">Cargar</button> 
+        </div>    
+        <div class="btn-group mr-2"> 
+          <button id="Enviar" name="Enviar" class="btn btn-primary" type="button">Cargar</button> 
         </div>     
       </div>
      
@@ -91,27 +93,7 @@
       }      
     });
     
- $("#Enviar").click(function (e) {
-    e.preventDefault();
-    var id_worker =9 ;
-    var token = '{{csrf_token()}}';
-    var data={id_worker:id_worker,_token:token};
-    $.ajax({
-        type: "post",
-        url: "{{route('results.load')}}",
-        data: {
-            data
-        }, success: function (msg) {
-                alert("Se ha realizado el POST con exito "+msg);
-        }
-    });
-});
-    
-    
-function GrabarExcepcion() {
-  alert("carga");
-  return false;
-}
+
     
   </script>
   
