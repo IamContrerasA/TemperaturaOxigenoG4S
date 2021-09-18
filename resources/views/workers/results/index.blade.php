@@ -95,14 +95,14 @@
 $(".btn-submit").click(function(e){
         e.preventDefault();
         var id = $("input[name=id]").val(); 
-        var load = 1;        
+        var load = 1;
+        var token = '{{csrf_token()}}';
+        var data={id_worked:id,load:load,_token:token};
+        alert(data);
         $.ajax({
            type:'POST',
            url:"https://pacific-caverns-02399.herokuapp.com/workers/" + id + "/results/",
-           data:{
-           id_worked:id,
-           load : load
-           },
+           data:data,
            success:function(data){
               alert(data.success);
            }
