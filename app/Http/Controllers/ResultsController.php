@@ -57,16 +57,9 @@ class ResultsController extends Controller
         return redirect('/workers/'.$request->worker_id.'/results'); 
         
     }
-    public function ajaxRequest()
-    {
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador','supervisor']);
-        $results = Result::where('worker_id', '=', $id)->orderBy('date', 'asc')->get();
-        $trabajador = Worker::find($id);
-        return view("workers.results.index", compact("results", "trabajador"));  
-    }
-     
    
-    public function ajaxRequestPost(Request $request)
+   
+    public function load(Request $request)
     {
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
        /* cargar el archivo **/
