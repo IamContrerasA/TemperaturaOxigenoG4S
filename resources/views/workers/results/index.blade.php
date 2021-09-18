@@ -101,7 +101,7 @@ $.ajaxSetup({
         var id = $("input[name=id]").val();   
         $.ajax({
            type:'POST',
-           url:"{{ route('results.load') }}",
+           url:"{{ route('load') }}",
            data:{id_worked:id},
            success:function(data){
               alert(data.success);
