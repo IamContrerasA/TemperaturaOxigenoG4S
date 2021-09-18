@@ -11,11 +11,12 @@
         <div class="btn-group mr-2">        
           <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
         </div>   
-        <div class="btn-group mr-2"> 
-          <button class="btn btn-success btn-submit">Cargar Resultado</button>
-          <meta name="csrf-token" content="{{ csrf_token() }}">
-        </div>  
+        {!! Form::submit('Consultar', ['class' => 'btn btn-primary' ]) !!}    
+             <a href="load/{{$trabajador->id}}" class="btn btn-success">Cargar Resultados</a>  
+        {!! Form::close() !!}
+  
        </div> 
+       
     @endif
   </div>
 
