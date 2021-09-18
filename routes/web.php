@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
   
   //Ruta acceso a load result
   
-  Route::post('workers/{id}/results', 'App\Http\Controllers\ResultsController@load')->name('results.load');
+  //Route::post('workers/9/results', 'App\Http\Controllers\ResultsController@load')->name('results.load');
 
 Route::group(['middleware' => ['cors']], function () {
   //Rutas a las que se permitirá acceso
