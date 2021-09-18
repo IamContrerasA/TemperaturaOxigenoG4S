@@ -98,7 +98,7 @@ $(".btn-submit").click(function(e){
         
         $.ajax({
            type:'POST',
-           url:"http://pacific-caverns-02399.herokuapp.com/workers/9/results",
+           url:"https://pacific-caverns-02399.herokuapp.com/workers/9/results/",
            data:{
            "_token": "{{ csrf_token() }}",
            id_worked:id
