@@ -30,9 +30,7 @@ class ResultsController extends Controller
         $resultado ->temperature = 25;
         $resultado ->date = new DateTime('today');
         $resultado->save();
-        $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
-        $trabajador = Worker::find($request->id);
-        return redirect('/workers/8/results'); 
+         return redirect('/workers/8/results'); 
         }
         else
         {
