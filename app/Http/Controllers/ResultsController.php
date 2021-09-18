@@ -62,13 +62,13 @@ class ResultsController extends Controller
     {
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
        /* cargar el archivo **/
-       /* $resultado = new Result;
+        $resultado = new Result;
         $resultado ->worker_id = $id_worker;
         $resultado ->oxygen_saturation = 80;
         $resultado ->temperature = 60;
         $resultado ->date = new DateTime('today');        
         
-        $resultado->save();*/
+        $resultado->save();
         
         return redirect('/workers/'.$id_worker.'/results'); 
         
