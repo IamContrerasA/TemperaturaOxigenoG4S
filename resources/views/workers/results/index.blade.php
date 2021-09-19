@@ -18,7 +18,7 @@
           <button class="btn btn-success btn-submit" aria-pressed="true">Cargar Resultado</button>
         </div>
         <div class="btn-group mr-2">   
-           <input type='file' id="file" name='file'  accept='text/plain' onchange='openFile(event)'>
+           <input type="file" onchange="readFile(this)">
         </div>
        </div> 
        
@@ -125,17 +125,19 @@ $(".btn-submit").click(function(e){
   
     });
     
-   var openFile = function(event) {
-    var input = event.target;
+   function readFile(input) {
+      let file = input.files[0];
+      let reader = new FileReader();
+      reader.readAsText(file);
+      reader.onload = function() {
+        console.log(reader.result);
+      };
 
-    var reader = new FileReader();
-    reader.onload = function(){
-      var text = reader.result;
-      console.log(reader.result.substring(0, 200));
-    };
-    reader.readAsText(input.files[0]);
-  };
- 
+      reader.onerror = function() {
+        console.log(reader.error);
+        };
+
+}
     
   </script>
   
