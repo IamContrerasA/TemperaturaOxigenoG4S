@@ -78,7 +78,7 @@ class ResultsController extends Controller
         
     }
   
-    public function apidata(Request $request)
+    public function apiload(Request $request)
     {
         
         //Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
