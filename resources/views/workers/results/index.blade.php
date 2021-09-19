@@ -121,12 +121,14 @@ $(".btn-submit").click(function(e){
       
         var id = $("input[name=id]").val();         
         var csrf = document.querySelector('meta[name="csrf-token"]').content;
-        let file = input.files[0];
-        let reader = new FileReader();
-        reader.readAsText(file);
-        reader.onload = function() {
-        var temp = reader.result.split(",") // oxygen_saturation,temperature 
-         };
+        var file = input.files[0];
+        var reader = new FileReader();
+          reader.onload = function(){
+            var text = reader.result;
+            console.log(reader.result.substring(0, 200));
+          };
+        temp =  reader.readAsText(input.files[0]);
+         
         var data={
           worker_id: id,
           oxygen_saturation : temp[1],
