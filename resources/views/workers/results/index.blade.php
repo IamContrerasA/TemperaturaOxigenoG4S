@@ -68,6 +68,7 @@
   </script>
 
   <script>
+  var temp;
     //funcion para borrar un resultado
     $.ajaxSetup({
             headers: {
@@ -117,37 +118,17 @@ $(".btn-submit").click(function(e){
   
     });
     
-   function readFile(input) {
-      
-        var id = $("input[name=id]").val();         
-        var csrf = document.querySelector('meta[name="csrf-token"]').content;
+   function readFile(input) {       
         var file = input.files[0];
         var reader = new FileReader();
           reader.onload = function(){
-            var text = reader.result;
+            temp = reader.result;
             console.log(reader.result.substring(0, 200).split(','));
-            var temp = reader.result.substring(0, 200).split(',')
-            var data={
-          worker_id: id,
-          oxygen_saturation : temp[1],
-          temperature :temp[2],
-          _token:csrf
         };
-        $.ajax({
-           type:'POST',
-             url : "{{ route('results.load') }}",
-           data:data,
-           success:function(data){
-               window.location.reload();
-           }
-        });
-            
-        };
-        //reader.readAsText(input.files[0]);
         reader.onerror = function() {
         console.log(reader.error);
         };
-
+        reader.readerAsText(input.files[0]);
 }
     
   </script>
