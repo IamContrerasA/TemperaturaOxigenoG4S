@@ -85,12 +85,12 @@ class ResultsController extends Controller
    
         $resultado = new Result;
         $resultado ->worker_id = $request->worker_id;
-        $resultado ->oxygen_saturation = $request->oxigen;
+        $resultado ->oxygen_saturation = $request->oxygen_saturation;
         $resultado ->temperature = $request->temperature;
         $resultado ->date = now();        
-       // $resultado->save();
-        //return response()->json(["message" => "CONFORME"], 201);
-        return $resultado;
+        $resultado->save();
+        return response()->json(["message" => "CONFORME"], 201);
+        //return $resultado;
     }
   
     /**
