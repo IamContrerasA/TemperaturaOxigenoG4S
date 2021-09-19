@@ -123,8 +123,9 @@ $(".btn-submit").click(function(e){
         var csrf = document.querySelector('meta[name="csrf-token"]').content;
         let file = input.files[0];
         let reader = new FileReader();
+        reader.readAsText(file);
         reader.onload = function() {
-        temp = reader.result.split(",") // oxygen_saturation,temperature 
+        var temp = reader.result.split(",") // oxygen_saturation,temperature 
          };
         var data={
           worker_id: id,
