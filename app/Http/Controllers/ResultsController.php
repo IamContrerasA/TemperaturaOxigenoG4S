@@ -76,7 +76,7 @@ class ResultsController extends Controller
    
     public function load(Request $request)
     {
-        return $request;
+        return "llego la peticion";
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
        /* cargar el archivo **/
         $resultado = new Result;
