@@ -76,14 +76,14 @@ class ResultsController extends Controller
    
     public function load(Request $request)
     {
-        return "llego la peticion";
+        //return "llego la peticion";
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
        /* cargar el archivo **/
         $resultado = new Result;
         $resultado ->worker_id = $request->worker_id;
         $resultado ->oxygen_saturation = 88;
         $resultado ->temperature = 60;
-        $resultado ->date = new DateTime('today');        
+        $resultado ->date = now();        
         $resultado->save();
       
         $id_worker = $request->worker_id; 
