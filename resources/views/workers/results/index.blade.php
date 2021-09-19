@@ -98,24 +98,9 @@
     });
     
     
-$(".btn-submit").click(function(e){
+  $(".btn-submit").click(function(e){
         e.preventDefault();
-        
-        var id = $("input[name=id]").val();         
-        var csrf = document.querySelector('meta[name="csrf-token"]').content;
-        var data={
-          worker_id: id,
-          _token:csrf
-        };
-        $.ajax({
-           type:'POST',
-             url : "{{ route('results.load') }}",
-           data:data,
-           success:function(data){
-               window.location.reload();
-           }
-        });
-  
+        loadResult();
     });
     
    function readFile(input) {       
@@ -126,11 +111,32 @@ $(".btn-submit").click(function(e){
             console.log(reader.result.substring(0, 200).split(','));
         };
         reader.onerror = function() {
-        console.log(reader.error);
+          console.log(reader.error);
         };
         reader.readAsText(input.files[0]);
-}
-    
+        loadResult();
+       }
+       
+   function loadResult()
+    {
+        var id = $("input[name=id]").val();         
+        var csrf = document.querySelector('meta[name="csrf-token"]').content;
+        var data={
+          worker_id: id,
+          oxygen_saturation: temp[1],
+          temperature: temp[2],
+          _token:csrf
+        };
+        $.ajax({
+           type:'POST',
+             url : "{{ route('results.load') }}",
+           data:data,
+           success:function(data){
+               window.location.reload();
+           }
+        });
+
+    }
   </script>
   
   <script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>
