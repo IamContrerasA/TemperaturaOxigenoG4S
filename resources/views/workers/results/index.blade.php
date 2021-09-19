@@ -127,10 +127,7 @@ $(".btn-submit").click(function(e){
             var text = reader.result;
             console.log(reader.result.substring(0, 200).split(','));
             var temp = reader.result.substring(0, 200).split(',')
-          };
-          reader.readAsText(input.files[0]);
-         
-        var data={
+            var data={
           worker_id: id,
           oxygen_saturation : temp[1],
           temperature :temp[2],
@@ -144,8 +141,10 @@ $(".btn-submit").click(function(e){
                window.location.reload();
            }
         });
-        
-      reader.onerror = function() {
+            
+        };
+        //reader.readAsText(input.files[0]);
+        reader.onerror = function() {
         console.log(reader.error);
         };
 
