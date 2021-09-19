@@ -67,14 +67,14 @@ class ResultsController extends Controller
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
    
         $resultado = new Result;
-        $resultado ->worker_id = $request->id_worked;
+        $resultado ->worker_id = $request->worker_id;
         $resultado ->oxygen_saturation = 88.00;
         $resultado ->temperature = 66.00;
         $resultado ->date = now();        
         $resultado->save();
         //return $resultado;
-        $id_worker = $request->id_worked;         
-        return redirect('/workers/'.$id_worker.'/results'); 
+        $worker_id = $request->worker_id;         
+        return redirect('/workers/'.$worker_id.'/results'); 
         
     }
   
