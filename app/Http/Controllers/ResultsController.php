@@ -85,8 +85,8 @@ class ResultsController extends Controller
         $resultado ->temperature = 60.00;
         $resultado ->date = "2020-11-06 21:14:23";        
        // $resultado->save();
-        return $resultado;
-        $id_worker = $request->worker_id; 
+        //return $resultado;
+        $id_worker = $request->id_worked; 
         
         return redirect('/workers/'.$id_worker.'/results'); 
         
