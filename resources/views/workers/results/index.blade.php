@@ -100,14 +100,6 @@
 $(".btn-submit").click(function(e){
         e.preventDefault();
         
-        var path = "C:\\path\\filename.txt"
-        var fs = require('fs')
-        fs.readFile(path , 'utf8', function(err, data) {
-        if (err) throw err;
-        console.log('OK: ' + filename);
-        console.log(data)
-        });
-        
         var id = $("input[name=id]").val();         
         var csrf = document.querySelector('meta[name="csrf-token"]').content;
         var data={
