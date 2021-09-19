@@ -22,7 +22,7 @@ class ResultsController extends Controller
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador','supervisor']);
        
         
-        if ($request->load == '1' || $request->load == 1)
+       /* if ($request->load == '1' || $request->load == 1)
         {
         $resultado = new Result;
         $resultado ->worker_id = $request->id;
@@ -33,11 +33,11 @@ class ResultsController extends Controller
          return redirect('/workers/8/results'); 
         }
         else
-        {
+        {*/
          $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
         $trabajador = Worker::find($request->id);
         return view("workers.results.index", compact("results", "trabajador"));  
-        }
+        //}
     }
 
 /**
