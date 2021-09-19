@@ -80,7 +80,7 @@ class ResultsController extends Controller
         //Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
    
         $resultado = new Result;
-        $resultado ->worker_id = $request->worker_id;
+        $resultado ->worker_id = $request->id_worked;
         $resultado ->oxygen_saturation = 88.00;
         $resultado ->temperature = 60.00;
         $resultado ->date = "2020-11-06 21:14:23";        
