@@ -9,7 +9,7 @@
      @if(Auth::user()->role_id < 3)
       <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">  
-       <input type="id" name="id" class="form-control" value="{{$trabajador->id}}" required="">
+       <input type="hidden" name="id" class="form-control" value="{{$trabajador->id}}" required="">
       </div>  
         <div class="btn-group mr-2">        
           <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
@@ -96,13 +96,10 @@
     
 $(".btn-submit").click(function(e){
         e.preventDefault();
-        var id = $("input[name=id]").val(); 
-        var load = 1;
-        //var token = '{{csrf_token()}}';
+        var id = $("input[name=id]").val();         
         var csrf = document.querySelector('meta[name="csrf-token"]').content;
         var data={
-          id_worked: id,
-          load:load,
+          worker_id: id,
           _token:csrf
         };
         $.ajax({
@@ -110,7 +107,6 @@ $(".btn-submit").click(function(e){
              url : "{{ route('results.load') }}",
            data:data,
            success:function(data){
-              
                window.location.reload();
            }
         });
