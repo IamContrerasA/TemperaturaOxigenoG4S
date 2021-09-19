@@ -70,15 +70,15 @@ class ResultsController extends Controller
         $resultado->save();
 
         return redirect('/workers/'.$request->worker_id.'/results'); 
-        
+       
     }
    
    
     public function load(Request $request)
     {
         //return "llego la peticion";
-        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
-       /* cargar el archivo **/
+        //Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+   
         $resultado = new Result;
         $resultado ->worker_id = $request->worker_id;
         $resultado ->oxygen_saturation = 88;
