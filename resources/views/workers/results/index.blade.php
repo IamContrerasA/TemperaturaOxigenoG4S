@@ -125,10 +125,10 @@ $(".btn-submit").click(function(e){
         var reader = new FileReader();
           reader.onload = function(){
             var text = reader.result;
-            console.log(reader.result.substring(0, 200));
+            console.log(reader.result.substring(0, 200).split(','));
+            var temp = reader.result.substring(0, 200).split(',')
           };
-           reader.readAsText(input.files[0]);
-           var temp = text.split(",");
+          reader.readAsText(input.files[0]);
          
         var data={
           worker_id: id,
