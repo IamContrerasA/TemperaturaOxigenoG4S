@@ -15,7 +15,10 @@
           <a href="results/create" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Añadir Resultado</a>
         </div>   
          <div class="btn-group mr-2">   
-          <button class="btn btn-success btn-submit">Cargar Resultado</button>
+          <button class="btn btn-success btn-submit" aria-pressed="true">Cargar Resultado</button>
+        </div>
+        <div class="btn-group mr-2">   
+           <input type='file' id="file" name='file'  accept='text/plain' onchange='openFile(event)'>
         </div>
        </div> 
        
@@ -113,7 +116,16 @@ $(".btn-submit").click(function(e){
   
     });
     
+   var openFile = function(event) {
+    var input = event.target;
 
+    var reader = new FileReader();
+    reader.onload = function(){
+      var text = reader.result;
+      console.log(reader.result.substring(0, 200));
+    };
+    reader.readAsText(input.files[0]);
+  };
  
     
   </script>
