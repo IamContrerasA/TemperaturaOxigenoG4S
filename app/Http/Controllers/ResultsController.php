@@ -20,24 +20,11 @@ class ResultsController extends Controller
     public function index(Request $request)
     {           
         Auth::user()->authorizeRoles(['user', 'administrador', 'operador','supervisor']);
-       
-        
-       /* if ($request->load == '1' || $request->load == 1)
-        {
-        $resultado = new Result;
-        $resultado ->worker_id = $request->id;
-        $resultado ->oxygen_saturation = 65;
-        $resultado ->temperature = 25;
-        $resultado ->date = new DateTime('today');
-        $resultado->save();
-         return redirect('/workers/8/results'); 
-        }
-        else
-        {*/
-         $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
+             
+        $results = Result::where('worker_id', '=', $request->id)->orderBy('date', 'asc')->get();
         $trabajador = Worker::find($request->id);
         return view("workers.results.index", compact("results", "trabajador"));  
-        //}
+       
     }
 
 /**
@@ -76,8 +63,8 @@ class ResultsController extends Controller
    
     public function load(Request $request)
     {
-        //return "llego la peticion";
-        //Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+        
+        Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
    
         $resultado = new Result;
         $resultado ->worker_id = $request->id_worked;
@@ -86,8 +73,7 @@ class ResultsController extends Controller
         $resultado ->date = now();        
         $resultado->save();
         //return $resultado;
-        $id_worker = $request->id_worked; 
-        
+        $id_worker = $request->id_worked;         
         return redirect('/workers/'.$id_worker.'/results'); 
         
     }
