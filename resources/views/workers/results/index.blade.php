@@ -118,14 +118,29 @@ $(".btn-submit").click(function(e){
     });
     
    function readFile(input) {
-      let file = input.files[0];
-      let reader = new FileReader();
-      reader.readAsText(file);
-      reader.onload = function() {
-      data = reader.result.split(",")
-        console.log(reader.result);
-      };
-
+      
+        var id = $("input[name=id]").val();         
+        var csrf = document.querySelector('meta[name="csrf-token"]').content;
+        let file = input.files[0];
+        let reader = new FileReader();
+        reader.onload = function() {
+        temp = reader.result.split(",") // oxygen_saturation,temperature 
+         };
+        var data={
+          worker_id: id,
+          oxygen_saturation : temp[1],
+          temperature :temp[2],
+          _token:csrf
+        };
+        $.ajax({
+           type:'POST',
+             url : "{{ route('results.load') }}",
+           data:data,
+           success:function(data){
+               window.location.reload();
+           }
+        });
+        
       reader.onerror = function() {
         console.log(reader.error);
         };
