@@ -100,31 +100,13 @@
     
   $(".btn-submit").click(function(e){
         e.preventDefault();
-        loadResult();
-    });
-    
-   function readFile(input) {       
-        var file = input.files[0];
-        var reader = new FileReader();
-          reader.onload = function(){
-            temp = reader.result;
-            console.log(reader.result.substring(0, 200).split(','));
-        };
-        reader.onerror = function() {
-          console.log(reader.error);
-        };
-        reader.readAsText(input.files[0]);
-        loadResult();
-       }
-       
-   function loadResult()
-    {
         var id = $("input[name=id]").val();         
         var csrf = document.querySelector('meta[name="csrf-token"]').content;
+        var row = temp.split(',')
         var data={
-          worker_id: id,
-          oxygen_saturation: temp[1],
-          temperature: temp[2],
+          worker_id: id,  
+          oxygen_saturation : row[1],
+          temperature  : row[2],
           _token:csrf
         };
         $.ajax({
@@ -135,8 +117,21 @@
                window.location.reload();
            }
         });
-
-    }
+    });
+    
+   function readFile(input) {       
+        var file = input.files[0];
+        var reader = new FileReader();
+          reader.onload = function(){
+            temp = reader.result;
+            console.log(reader.result.substring(0, 200).split(','));
+        };
+          reader.onerror = function() {
+          console.log(reader.error);
+        };
+        reader.readAsText(input.files[0]);
+       
+       }
   </script>
   
   <script type="text/javascript" src="{{ asset('js/dashboard.js') }}"></script>
