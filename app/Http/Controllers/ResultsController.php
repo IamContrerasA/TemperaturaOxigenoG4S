@@ -78,6 +78,23 @@ class ResultsController extends Controller
         
     }
   
+    public function apidata(Request $request)
+    {
+        
+        //Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
+   
+        $resultado = new Result;
+        $resultado ->worker_id = $request->worker_id;
+        $resultado ->oxygen_saturation = 88.00;
+        $resultado ->temperature = 66.00;
+        $resultado ->date = now();        
+        $resultado->save();
+        return response()->json([
+        "message" => "CONFORME"
+    ], 201);
+        
+    }
+  
     /**
      * Display the specified resource.
      *
