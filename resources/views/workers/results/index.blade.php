@@ -128,7 +128,7 @@ $(".btn-submit").click(function(e){
         reader.onerror = function() {
         console.log(reader.error);
         };
-        reader.readerAsText(input.files[0]);
+        reader.readAsText(input.files[0]);
 }
     
   </script>
