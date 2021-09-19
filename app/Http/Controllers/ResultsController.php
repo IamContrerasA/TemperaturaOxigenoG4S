@@ -83,12 +83,12 @@ class ResultsController extends Controller
         
         //Auth::user()->authorizeRoles(['user', 'administrador', 'operador']);
    
-        /*$resultado = new Result;
+        $resultado = new Result;
         $resultado ->worker_id = $request->worker_id;
-        $resultado ->oxygen_saturation = 88.00;
-        $resultado ->temperature = 66.00;
+        $resultado ->oxygen_saturation = $request->oxigen;
+        $resultado ->temperature = $request->temperature;
         $resultado ->date = now();        
-        $resultado->save();*/
+        $resultado->save();
         return response()->json([
         "message" => "CONFORME"
     ], 201);
