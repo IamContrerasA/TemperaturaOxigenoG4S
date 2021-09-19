@@ -127,7 +127,8 @@ $(".btn-submit").click(function(e){
             var text = reader.result;
             console.log(reader.result.substring(0, 200));
           };
-        temp =  reader.readAsText(input.files[0]);
+           reader.readAsText(input.files[0]);
+           var temp = text.split(",");
          
         var data={
           worker_id: id,
