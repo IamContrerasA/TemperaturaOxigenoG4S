@@ -88,11 +88,9 @@ class ResultsController extends Controller
         $resultado ->oxygen_saturation = $request->oxigen;
         $resultado ->temperature = $request->temperature;
         $resultado ->date = now();        
-        $resultado->save();
-        return response()->json([
-        "message" => "CONFORME"
-    ], 201);
-        
+       // $resultado->save();
+        //return response()->json(["message" => "CONFORME"], 201);
+        return $resultado;
     }
   
     /**
