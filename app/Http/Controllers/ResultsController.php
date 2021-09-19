@@ -81,9 +81,9 @@ class ResultsController extends Controller
    
         $resultado = new Result;
         $resultado ->worker_id = $request->worker_id;
-        $resultado ->oxygen_saturation = 88;
-        $resultado ->temperature = 60;
-        $resultado ->date = now();        
+        $resultado ->oxygen_saturation = 88.00;
+        $resultado ->temperature = 60.00;
+        $resultado ->date = "2020-11-06 21:14:23";        
         $resultado->save();
       
         $id_worker = $request->worker_id; 
