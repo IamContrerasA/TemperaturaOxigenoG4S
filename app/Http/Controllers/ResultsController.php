@@ -83,8 +83,9 @@ class ResultsController extends Controller
         $resultado ->oxygen_saturation = 88;
         $resultado ->temperature = 60;
         $resultado ->date = new DateTime('today');        
-        
         $resultado->save();
+      
+        $id_worker = $request->worker_id; 
         
         return redirect('/workers/'.$id_worker.'/results'); 
         
