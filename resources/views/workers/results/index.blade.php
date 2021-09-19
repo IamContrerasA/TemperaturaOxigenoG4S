@@ -122,6 +122,7 @@ $(".btn-submit").click(function(e){
       let reader = new FileReader();
       reader.readAsText(file);
       reader.onload = function() {
+      data = reader.result.split(",")
         console.log(reader.result);
       };
 
