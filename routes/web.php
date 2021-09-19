@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,8 @@ use Illuminate\Support\Facades\Route;
   
   //Ruta acceso a load result
   
-  
-Route::post('/results/post', 'App\Http\Controllers\ResultsController@load');
+ 
+
 
 Route::group(['middleware' => ['cors']], function () {
   //Rutas a las que se permitirá acceso
@@ -47,7 +48,7 @@ Route::group(['middleware' => ['cors']], function () {
 
   //Rutas crud results
   Route::resource('workers/{id}/results', 'App\Http\Controllers\ResultsController');
-
+  Route::post('workers/results/load', [ResultsController::class, 'load'])->name('results.load');
  
   
 });
